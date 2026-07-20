@@ -4,10 +4,11 @@ Repo de estudio con un tutor exigente en modalidad **ZERO TO HERO**: desde cero,
 
 ## Cómo empezar
 
-1. Leé el protocolo: [`tutor/PROTOCOLO.md`](tutor/PROTOCOLO.md)
-2. Completá la entrada: [`tutor/ENTRADA.md`](tutor/ENTRADA.md)
-3. Opcional: dejá material en [`tutor/inbox/`](tutor/inbox/)
-4. Pedí el ejercicio o concepto concreto
+1. Subí la guía / foto / PDF a [`tutor/inbox/`](tutor/inbox/) (o adjuntá en el chat)
+2. Pedí explícitamente, por ejemplo: `zero to hero — problema 5`
+3. El tutor mapea la guía (si aplica) y resuelve **solo** lo pedido con desarrollo **completo desde cero**
+
+Protocolo: [`tutor/PROTOCOLO.md`](tutor/PROTOCOLO.md) · Entrada: [`tutor/ENTRADA.md`](tutor/ENTRADA.md)
 
 ## Qué hace el tutor
 

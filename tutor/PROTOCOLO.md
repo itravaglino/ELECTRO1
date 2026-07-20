@@ -2,62 +2,51 @@
 
 ## Objetivo
 
-Entender de verdad para poder resolver solo en un examen o trabajo práctico.
+Que el alumno entienda de verdad y pueda resolver solo en un examen o TP.
 
-**Prioridad**
+**Prioridad:** intuición → técnica → desarrollo completo → resultado limpio.
 
-1. Intuición / significado
-2. Técnica reutilizable
-3. Desarrollo completo
-4. Resultado final limpio
+## Cómo activarlo
 
-## Qué necesitás pasar
+Subí la guía / foto / PDF / enunciado y pedí, por ejemplo:
 
-1. Guía, apunte, PDF, enunciado, captura o texto del problema.
-2. Qué ejercicio/tema querés (número, ítem a/b/c, o “explicame este concepto”).
-3. Opcional: qué ya sabés, dónde te trabás, fecha de examen, nivel (CBC / facultad / posgrado).
+> zero to hero — problema 5
 
-Podés completar [`ENTRADA.md`](ENTRADA.md) y/o dejar el material en [`inbox/`](inbox/).
+o
 
-## Flujo
+> desarrollalo completo desde cero, el 5
 
-```mermaid
-flowchart TD
-  material[Material del alumno] --> leer[Leer todo]
-  leer --> tipo{Guia completa o ejercicio?}
-  tipo -->|Guia| mapear[Temas + orden de estudio]
-  mapear --> empezar[Empezar SOLO lo pedido]
-  tipo -->|Ejercicio| empezar
-  empezar --> z2h[Resolucion ZERO TO HERO]
-  z2h --> siguiente[Ofrecer siguiente paso]
-```
+## Qué hace el tutor
 
-### Si es una guía completa
+1. Lee **todo** el material.
+2. Si es guía: temas + orden (obligatorio / importante / si sobra tiempo).
+3. Resuelve **solo** lo pedido.
+4. Explica **desde cero**: definiciones, significado, cada fórmula justificada, cuentas sin saltos.
 
-1. Temas que cubre
-2. Orden recomendado: **obligatorio** / **importante** / **si sobra tiempo**
-3. Empezar **solo** el ejercicio o tema indicado
+## Prohibido
 
-### Si es un ejercicio puntual
+- “fórmula conocida”, “se puede mostrar”, “resultado estándar” sin derivar
+- saltar álgebra
+- asumir conocimiento no declarado
+- inventar datos o enunciados
 
-Resolver **solo** ese (o el ítem pedido), con la estructura de [`PLANTILLA_RESOLUCION.md`](PLANTILLA_RESOLUCION.md).
+## Estructura de cada resolución
 
-## Reglas ZERO TO HERO
+0. Desde cero del tema  
+1. Qué pide  
+2. Idea central  
+3. Herramientas previas (explicadas)  
+4. Setup  
+5. Pasos numerados  
+6. Desarrollo completo  
+7. Resultado final  
+8. Chequeos  
+9. Errores típicos  
+10. Mini-resumen  
 
-- Empezar desde cero: definiciones, significado, hipótesis, notación.
-- Nunca usar fórmula/teorema/identidad sin justificar de dónde sale, derivarla, o explicar por qué aplica.
-- Si algo se parece a otro problema, explicar la analogía.
-- Si el alumno se traba: un nivel más atrás + ejemplo mínimo + volver.
-- No inventar enunciados ni datos.
-- Español claro, directo; negritas solo para lo importante.
+## Archivos
 
-## Adaptación por disciplina
-
-| Área | Orden |
-|------|--------|
-| Matemática | definiciones → intuición → prueba/cálculo → chequeo |
-| Física | fenómeno → leyes → modelo → cuentas → interpretación |
-| Química | qué ocurre → por qué → ecuaciones/mecanismo → resultado |
-| Programación | problema → enfoque → complejidad → implementación → tests mentales |
-| Demostraciones | hipótesis → estrategia → pasos → conclusión |
-| Numéricos | datos → fórmulas → sustitución → unidades → sanity check |
+- Entrada: [`ENTRADA.md`](ENTRADA.md)
+- Material: [`inbox/`](inbox/)
+- Sesiones: [`sesiones/`](sesiones/)
+- Plantillas: [`PLANTILLA_GUIA.md`](PLANTILLA_GUIA.md), [`PLANTILLA_RESOLUCION.md`](PLANTILLA_RESOLUCION.md)

@@ -1,161 +1,307 @@
-# Guía 7 EMI — Mapeo + Problema 5 (ZERO TO HERO)
+# Guía 7 — Problema 5 — ZERO TO HERO (desarrollo completo)
 
-## Temas que cubre la guía
-
-Magnetostática: corrientes equivalentes de cargas en rotación, Ampère + superposición, solenoides y potencial vector, discos rotantes (dipolo), **cáscara esférica cargada en rotación**, campos dentro/fuera de cáscaras, materiales magnéticos (μ), imanes permanentes, energía magnetostática.
-
-## Orden recomendado
-
-### Obligatorio
-1. Prob. 1 (K de cargas rotantes) — base del 4 y del 5
-2. Prob. 2 (Ampère + agujero)
-3. Prob. 4 (disco rotante → B en eje y lejos)
-4. **Prob. 5 (cáscara esférica rotante → A y B)** ← estamos acá
-5. Prob. 3 (solenoide finito / A)
-
-### Importante
-6. Prob. 6 (B interior dado → Maxwell + exterior + K)
-7. Prob. 8 (cilindro magnetizado: H y B)
-8. Prob. 10 (identidades de energía)
-
-### Si sobra tiempo
-9. Prob. 7 (cáscara de permeabilidad μ, Jackson 5.12)
-10. Prob. 9 (M raro + energía con espira)
+> Pedido: desarrollo completo desde cero, como si no se entendiera nada del tema.
+> Material: `tutor/inbox/Guia_7_EMI.pdf`
 
 ---
 
-# Problema 5
+## Mapa breve de la Guía 7 (solo contexto)
 
-**Enunciado (reformulado):** Un cascarón esférico tiene carga superficial uniforme σ₀ y gira con velocidad angular constante ω alrededor de un eje que pasa por su centro.
+**Temas:** magnetostática (corrientes, Ampère, solenoides, cargas rotantes, materiales magnéticos, energía).
 
-- **(a)** Calcular el potencial vector **A** en un punto arbitrario del espacio.
-- **(b)** Calcular el campo de inducción **B** en un punto arbitrario del espacio.
+**Orden:** 1 → 2 → 4 → **5** → 3 (obligatorio); luego 6, 8, 10; si sobra 7, 9.
 
-La guía no escribe el radio; lo llamamos **R** (radio del cascarón).
+Abajo: **solo el problema 5**, completo.
 
 ---
 
-## 1. Qué pide
+# 0. Desde cero del tema
 
-Queremos, en **todo el espacio** (adentro y afuera del cascarón):
+## ¿De qué habla este problema?
 
-- el potencial vector **A(r)**,
-- el campo magnético **B(r) = ∇ × A**.
+Hasta ahora, en electrostática, cargas **quietas** producen campo eléctrico **E**.
 
-No pide energía ni fuerzas: solo el mapa de **A** y **B** producido por esa carga que gira.
+Acá las cargas **se mueven de forma estacionaria** (corrientes que no cambian con el tiempo). Eso produce campo magnético **B**.
 
-## 2. Idea central
+Esa área se llama **magnetostática**.
 
-Una carga superficial que gira **no es una corriente de volumen**: es una **corriente superficial** **K**.
+## Vocabulario mínimo (lo vamos a usar)
 
-Esa **K** sobre la esfera es *exactamente la misma* que la de una esfera con magnetización uniforme **M**. Entonces:
+- **Carga eléctrica:** cantidad \(q\). Unidad: coulomb (C).
+- **Densidad superficial de carga \(\sigma\):** cuánta carga hay por unidad de área. Unidad: C/m².
+  Si un pedacito de superficie tiene área \(da\) y carga \(dq\), entonces \(dq=\sigma\,da\).
+- **Corriente eléctrica \(I\):** carga que pasa por segundo. Unidad: ampere (A = C/s).
+- **Densidad de corriente superficial \(\mathbf{K}\):** corriente por unidad de ancho transversal sobre una superficie. Unidad: A/m.
+- **Campo de inducción magnética \(\mathbf{B}\):** el campo magnético “que sentís” en el vacío (fuerza sobre cargas en movimiento). Unidad: tesla (T).
+- **Potencial vector \(\mathbf{A}\):** un campo auxiliar del que se obtiene \(\mathbf{B}\) por una derivada. No es energía potencial; es una herramienta de cálculo.
 
-1. Identificamos **K → M**.
-2. Usamos el resultado estándar de la esfera magnetizada uniforme (adentro campo uniforme, afuera dipolo).
-3. De ahí leemos **A** y **B** en todas partes.
+## Las leyes de Maxwell en magnetostática (lo esencial)
 
-Importante: el cascarón **no “es”** una esfera magnetizada; es una **estrategia de equivalencia** porque producen la misma **K** en la superficie (y adentro **J = 0** en ambos casos).
+En el vacío, cuando todo es estacionario:
 
-## 3. Herramientas previas
+1. **No hay monopolos magnéticos:**
+   \[
+   \nabla\cdot\mathbf{B}=0.
+   \]
+   Significado: las líneas de \(\mathbf{B}\) no empiezan ni terminan; son cerradas (o van al infinito).
 
-### 3.1 Corriente superficial de una carga que se mueve
+2. **Ley de Ampère (forma local, sin campos que cambien en el tiempo):**
+   \[
+   \nabla\times\mathbf{B}=\mu_0\mathbf{J}.
+   \]
+   Significado: las corrientes \(\mathbf{J}\) “enroscan” el campo \(\mathbf{B}\).
+   \(\mu_0\) es la permeabilidad del vacío:
+   \[
+   \mu_0=4\pi\times 10^{-7}\,\frac{\mathrm{T\cdot m}}{\mathrm{A}}.
+   \]
 
-Si hay densidad superficial de carga σ y la superficie se mueve con velocidad **v**, la corriente superficial es
+Si la corriente está solo en una superficie (como en un cascarón), en vez de \(\mathbf{J}\) de volumen usamos \(\mathbf{K}\) de superficie, y la ley de Ampère en la frontera dice (lo usaremos más adelante con cuidado):
 
 \[
-\mathbf{K} = \sigma\,\mathbf{v}.
+\hat{\mathbf{n}}\times(\mathbf{B}_{\text{arriba}}-\mathbf{B}_{\text{abajo}})=\mu_0\mathbf{K}.
 \]
 
-Significado: carga por unidad de tiempo que cruza un segmento unitario dibujado sobre la superficie.
+## ¿Por qué aparece el potencial vector \(\mathbf{A}\)?
 
-### 3.2 Velocidad de rotación rígida
-
-Si el cuerpo gira con **ω** (vector), en el punto de posición **r**:
+Como \(\nabla\cdot\mathbf{B}=0\) siempre (en magnetostática y en general), existe un campo vectorial \(\mathbf{A}\) tal que
 
 \[
-\mathbf{v} = \boldsymbol{\omega}\times\mathbf{r}.
+\mathbf{B}=\nabla\times\mathbf{A}.
 \]
 
-### 3.3 Potencial vector magnetostático
+Eso no es magia: es un teorema de cálculo vectorial (“si un campo tiene divergencia nula, es el rotor de otro”).
 
-Para corrientes estacionarias, en gauge de Coulomb,
+\(\mathbf{A}\) no es único: podés sumarle el gradiente de una función escalar y \(\mathbf{B}\) no cambia. En magnetostática suele elegirse el **gauge de Coulomb**:
+
+\[
+\nabla\cdot\mathbf{A}=0.
+\]
+
+Con esa elección, la ecuación para \(\mathbf{A}\) se vuelve
+
+\[
+\nabla^2\mathbf{A}=-\mu_0\mathbf{J},
+\]
+
+cuya solución (corrientes localizadas, \(\mathbf{A}\to 0\) en el infinito) es
 
 \[
 \mathbf{A}(\mathbf{r})
 =
 \frac{\mu_0}{4\pi}
 \int
-\frac{\mathbf{J}(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|}\,dV'
-\quad\text{o, si solo hay K,}\quad
+\frac{\mathbf{J}(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|}\,dV'.
+\]
+
+Si no hay corriente de volumen, solo superficial:
+
+\[
+\boxed{
+\mathbf{A}(\mathbf{r})
+=
 \frac{\mu_0}{4\pi}
 \int
-\frac{\mathbf{K}(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|}\,da'.
+\frac{\mathbf{K}(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|}\,da'
+}
 \]
 
-Y siempre
+Esa es la fórmula madre del ítem (a). El problema se reduce a: **encontrar \(\mathbf{K}\)** y **hacer la integral** (o un método equivalente bien justificado).
+
+---
+
+# Problema 5 — enunciado reformulado
+
+Un **cascarón esférico** (superficie esférica delgada) tiene densidad de carga superficial **uniforme** \(\sigma_0\) y gira con velocidad angular **constante** \(\boldsymbol{\omega}\) alrededor de un eje que pasa por el centro.
+
+- **(a)** Calcular \(\mathbf{A}\) en un punto cualquiera del espacio.
+- **(b)** Calcular \(\mathbf{B}\) en un punto cualquiera del espacio.
+
+La guía no escribe el radio: lo llamamos **\(R\)**.
+
+---
+
+## 1. Qué pide
+
+En criollo:
+
+> La esfera cargada está girando. Eso mueve carga ⇒ hay corriente en la cáscara ⇒ hay campo magnético.  
+> Quiero las fórmulas de \(\mathbf{A}\) y \(\mathbf{B}\) **adentro** del cascarón (\(r<R\)) y **afuera** (\(r>R\)).
+
+## 2. Idea central (sin cuentas)
+
+1. En cada puntito del cascarón la carga se mueve ⇒ aparece una **corriente superficial \(\mathbf{K}\)**.
+2. Con \(\mathbf{K}\) se determina \(\mathbf{A}\) (integral de arriba) y luego \(\mathbf{B}=\nabla\times\mathbf{A}\).
+3. Calcular esa integral “a lo bruto” es pesado. Hay una **estrategia** (no es que el cascarón “sea” un imán):
+   - la \(\mathbf{K}\) del cascarón es **idéntica** a la corriente superficial de una esfera con magnetización uniforme \(\mathbf{M}\);
+   - ese problema se resuelve con potencial escalar magnético (ecuación de Laplace + condiciones de borde);
+   - de ahí salen \(\mathbf{B}\) y \(\mathbf{A}\) en todo el espacio.
+
+## 3. Herramientas previas (explicadas desde cero)
+
+### 3.1 Velocidad de un punto que rota
+
+Si un cuerpo rígido gira con velocidad angular \(\boldsymbol{\omega}\) (vector: dirección = eje, sentido = regla de la mano derecha, módulo = rad/s), un punto de posición \(\mathbf{r}\) tiene velocidad
 
 \[
-\mathbf{B}=\nabla\times\mathbf{A}.
+\mathbf{v}=\boldsymbol{\omega}\times\mathbf{r}.
 \]
 
-### 3.4 Corrientes de magnetización (por qué aparece M)
+Por qué: el desplazamiento infinitesimal es un arco perpendicular a \(\boldsymbol{\omega}\) y a \(\mathbf{r}\), de longitud \(\omega r\sin\theta\,dt\), donde \(\theta\) es el ángulo entre \(\boldsymbol{\omega}\) y \(\mathbf{r}\). Eso es exactamente el producto cruz.
 
-Si un material tiene magnetización **M**:
+### 3.2 De carga móvil a corriente superficial
 
-- corriente de volumen: \(\mathbf{J}_m=\nabla\times\mathbf{M}\)
-- corriente de superficie: \(\mathbf{K}_m=\mathbf{M}\times\hat{\mathbf{n}}\)
+Imaginá un pedacito de superficie con carga \(dq=\sigma\,da\).  
+Si se mueve con velocidad \(\mathbf{v}\), en un tiempo \(dt\) transporta esa carga una distancia \(\mathbf{v}dt\).
 
-Para **M uniforme** dentro de una esfera: \(\nabla\times\mathbf{M}=0\), y solo sobrevive **K_m** en la superficie. Por eso puede imitar un cascarón con **K**.
-
-### 3.5 Resultado de la esfera con M uniforme (lo vamos a usar y chequear)
-
-Si \(\mathbf{M}=M\,\hat{\mathbf{z}}\) uniforme en \(r<R\) (y 0 afuera):
-
-- **Adentro:** \(\mathbf{B}=\dfrac{2}{3}\mu_0\mathbf{M}\) (uniforme),  
-  \(\mathbf{A}=\dfrac{\mu_0}{3}\mathbf{M}\times\mathbf{r}\).
-- **Afuera:** campo de un dipolo con momento
+La densidad de corriente superficial se define como
 
 \[
-\mathbf{m}=\frac{4\pi}{3}R^3\mathbf{M},
+\mathbf{K}=\sigma\mathbf{v}.
 \]
+
+Intuición: \(\sigma\) es “carga por área”; multiplicada por velocidad da “carga por tiempo por ancho transversal” = amperes por metro.
+
+### 3.3 Coordenadas esféricas (porque la geometría es una esfera)
+
+Un punto se describe con \((r,\theta,\varphi)\):
+
+- \(r\): distancia al origen (\(r\ge 0\)).
+- \(\theta\): ángulo polar desde el eje \(+z\) (\(0\le\theta\le\pi\)). En el ecuador \(\theta=\pi/2\); en el polo norte \(\theta=0\).
+- \(\varphi\): ángulo azimutal alrededor de \(z\) (\(0\le\varphi<2\pi\)).
+
+Versores locales (unitarios):
+
+- \(\hat{\mathbf{r}}\): hacia afuera.
+- \(\hat{\boldsymbol{\theta}}\): hacia “aumentar \(\theta\)” (de norte a sur).
+- \(\hat{\boldsymbol{\varphi}}\): hacia “aumentar \(\varphi\)” (alrededor de \(z\)).
+
+Relación útil con cartesianas:
 
 \[
-\mathbf{A}(\mathbf{r})=\frac{\mu_0}{4\pi}\frac{\mathbf{m}\times\hat{\mathbf{r}}}{r^2},
-\qquad
-\mathbf{B}(\mathbf{r})=\frac{\mu_0}{4\pi}\frac{3(\mathbf{m}\cdot\hat{\mathbf{r}})\hat{\mathbf{r}}-\mathbf{m}}{r^3}.
+\begin{aligned}
+x&=r\sin\theta\cos\varphi,\\
+y&=r\sin\theta\sin\varphi,\\
+z&=r\cos\theta.
+\end{aligned}
 \]
 
-Más abajo **motivamos** de dónde salen **A** interior y el momento **m**.
+Si \(\boldsymbol{\omega}=\omega\hat{\mathbf{z}}\), entonces
+
+\[
+\boldsymbol{\omega}\times\mathbf{r}=\omega r\sin\theta\,\hat{\boldsymbol{\varphi}}.
+\]
+
+(Eso lo aceptamos como identidad de coordenadas; se verifica expandiendo el producto cruz en cartesianas y pasando a esféricas.)
+
+### 3.4 Magnetización \(\mathbf{M}\) y corrientes de magnetización
+
+En materiales, la magnetización \(\mathbf{M}\) es el momento magnético por unidad de volumen (vamos a usarla solo como herramienta).
+
+Se demuestra (promediando corrientes microscópicas) que un \(\mathbf{M}\) produce corrientes equivalentes:
+
+\[
+\mathbf{J}_m=\nabla\times\mathbf{M}
+\quad\text{(volumen)},\qquad
+\mathbf{K}_m=\mathbf{M}\times\hat{\mathbf{n}}
+\quad\text{(superficie)}.
+\]
+
+Si \(\mathbf{M}\) es **constante** dentro de una región, \(\nabla\times\mathbf{M}=\mathbf{0}\), y solo puede haber corriente en la superficie.
+
+### 3.5 Campo auxiliar \(\mathbf{H}\)
+
+Se define
+
+\[
+\mathbf{H}\equiv\frac{\mathbf{B}}{\mu_0}-\mathbf{M}.
+\]
+
+(En el vacío, \(\mathbf{M}=\mathbf{0}\), así que \(\mathbf{B}=\mu_0\mathbf{H}\).)
+
+Tomando el rotor de \(\mathbf{B}=\mu_0(\mathbf{H}+\mathbf{M})\) y usando \(\nabla\times\mathbf{B}=\mu_0\mathbf{J}_{\text{total}}\), se obtiene
+
+\[
+\nabla\times\mathbf{H}=\mathbf{J}_f,
+\]
+
+donde \(\mathbf{J}_f\) son las **corrientes libres** (las que “ponés vos” con cables, no las de magnetización).
+
+En nuestro problema equivalente **no habrá corrientes libres de volumen**. Entonces, en las regiones con \(\mathbf{J}_f=\mathbf{0}\),
+
+\[
+\nabla\times\mathbf{H}=\mathbf{0}
+\quad\Rightarrow\quad
+\mathbf{H}=-\nabla\Phi_M
+\]
+
+para alguna función escalar \(\Phi_M\) (potencial escalar magnético).
+
+Además, \(\nabla\cdot\mathbf{B}=0\) implica, si \(\mathbf{M}\) es uniforme a trozos,
+
+\[
+\nabla\cdot\mathbf{H}=-\nabla\cdot\mathbf{M}=0
+\]
+
+dentro de cada región uniforme ⇒ \(\nabla^2\Phi_M=0\) (Laplace).
+
+### 3.6 Soluciones de Laplace con simetría azimutal (eje \(z\))
+
+Si el problema no depende de \(\varphi\) y es lineal en \(\cos\theta\) (lo veremos), las soluciones regulares útiles son:
+
+- Interior (finito en \(r=0\)): \(\Phi_{\text{in}}=\alpha\, r\cos\theta\).
+- Exterior (que se anule en el infinito): \(\Phi_{\text{out}}=\dfrac{\beta}{r^2}\cos\theta\).
+
+(Estas son los términos \(l=1\) de la expansión general en polinomios de Legendre. El borde con \(\cos\theta\) solo “enciende” el modo \(l=1\).)
+
+---
 
 ## 4. Setup
 
 | Símbolo | Significado |
 |--------|-------------|
 | \(R\) | radio del cascarón |
-| \(\sigma_0\) | densidad superficial de carga (uniforme, constante) |
-| \(\boldsymbol{\omega}=\omega\,\hat{\mathbf{z}}\) | velocidad angular (eje \(z\)) |
-| \(\mathbf{r}\) | punto de observación |
-| \(\mathbf{r}'\) | punto sobre el cascarón (\(|\mathbf{r}'|=R\)) |
-| \(\mathbf{K}\) | corriente superficial |
-| \(\mathbf{A},\mathbf{B}\) | potencial vector e inducción |
+| \(\sigma_0\) | densidad superficial de carga (uniforme) |
+| \(\boldsymbol{\omega}=\omega\hat{\mathbf{z}}\) | velocidad angular |
+| \(\mathbf{r}\) | punto donde calculamos los campos |
+| \(r=|\mathbf{r}|\) | distancia al centro |
+| \(\mathbf{K}\) | corriente superficial en el cascarón |
+| \(\mathbf{A}\) | potencial vector |
+| \(\mathbf{B}\) | inducción magnética |
+| \(\mathbf{M}\) | magnetización equivalente (estrategia) |
+| \(\mathbf{H},\Phi_M\) | campo auxiliar y potencial escalar |
 
-**Hipótesis:** magnetostática (ω constante, régimen estacionario), vacío (μ₀), cascarón idealmente delgado.
+**Hipótesis**
 
-**Diagrama mental:** esfera; gira alrededor de \(z\); en el ecuador la velocidad es máxima; cerca de los polos, casi nula. Eso ya anticipa que **K ∝ sinθ**.
+- Régimen magnetostático (\(\omega\) constante; no hay campos que cambien en el tiempo de forma relevante).
+- Cascarón infinitamente delgado.
+- Vacío adentro y afuera (\(\mu_0\)).
+- Eje de rotación = eje \(z\).
+
+**Diagrama mental**
+
+Esfera de radio \(R\). Gira alrededor de \(z\). En el ecuador la velocidad es máxima; en los polos es casi cero. Por eso esperamos \(\mathbf{K}\propto\sin\theta\).
+
+---
 
 ## 5. Pasos numerados
 
-1. Escribir **v** y **K** sobre el cascarón.
-2. Identificar el **M** equivalente (\(\mathbf{K}=\mathbf{M}\times\hat{\mathbf{r}}\)).
-3. Construir **A** adentro y afuera (esfera magnetizada equivalente).
-4. Calcular **B = ∇×A** (o usar los resultados equivalentes de **B**).
-5. Chequear continuidad / casos límite / unidades.
+1. Calcular \(\mathbf{v}\) y \(\mathbf{K}\) sobre el cascarón.
+2. Encontrar \(\mathbf{M}\) uniforme tal que \(\mathbf{M}\times\hat{\mathbf{r}}=\mathbf{K}\) (equivalencia).
+3. Plantear el problema de potencial escalar \(\Phi_M\) adentro/afuera.
+4. Imponer condiciones de borde en \(r=R\) y resolver \(\alpha,\beta\).
+5. Obtener \(\mathbf{H}\) y \(\mathbf{B}\) (ítem b).
+6. Construir \(\mathbf{A}\) a partir de \(\mathbf{B}\) (ítem a), justificando cada región.
+7. Chequear continuidad, unidades y límites.
+
+---
 
 ## 6. Desarrollo completo
 
-### Paso 1 — Velocidad y corriente superficial
+### Paso 1 — Velocidad y corriente superficial \(\mathbf{K}\)
 
-Sobre el cascarón, \(\mathbf{r}'=R\,\hat{\mathbf{r}}\). Entonces
+Sobre el cascarón, la posición de un punto es \(\mathbf{r}'=R\hat{\mathbf{r}}\).
+
+Velocidad:
 
 \[
 \mathbf{v}(\mathbf{r}')
@@ -165,9 +311,7 @@ Sobre el cascarón, \(\mathbf{r}'=R\,\hat{\mathbf{r}}\). Entonces
 \omega R\sin\theta\,\hat{\boldsymbol{\varphi}}.
 \]
 
-(En esféricas, \(\boldsymbol{\omega}\times\mathbf{r}\) apunta en \(\hat{\boldsymbol{\varphi}}\) y su módulo es \(\omega r\sin\theta\).)
-
-Por lo tanto
+Corriente superficial:
 
 \[
 \mathbf{K}(\theta)
@@ -177,7 +321,7 @@ Por lo tanto
 \sigma_0\omega R\sin\theta\,\hat{\boldsymbol{\varphi}}.
 \]
 
-Definimos la constante
+Definimos
 
 \[
 K_0\equiv\sigma_0\omega R
@@ -185,198 +329,272 @@ K_0\equiv\sigma_0\omega R
 \mathbf{K}=K_0\sin\theta\,\hat{\boldsymbol{\varphi}}.
 \]
 
-### Paso 2 — Magnetización equivalente
+**Lectura física:** en \(\theta=0\) (polo), \(\sin\theta=0\) ⇒ no hay corriente; en \(\theta=\pi/2\) (ecuador), máxima corriente azimutal. Tiene sentido: ahí la carga “corre” más rápido.
 
-Buscamos un **M** uniforme (solo dentro de la esfera imaginaria \(r<R\)) tal que
+Con esto, el ítem (a) sería en principio
 
 \[
-\mathbf{K}_m=\mathbf{M}\times\hat{\mathbf{r}}
+\mathbf{A}(\mathbf{r})
+=
+\frac{\mu_0}{4\pi}
+\int
+\frac{K_0\sin\theta'\,\hat{\boldsymbol{\varphi}}'}{|\mathbf{r}-\mathbf{r}'|}\,R^2\sin\theta'\,d\theta'\,d\varphi'.
 \]
-coincida con **K**.
 
-Si \(\mathbf{M}=M\,\hat{\mathbf{z}}\), entonces
+Esa integral se puede hacer con expansión en armónicos esféricos. En vez de ahogarnos ahí, usamos la equivalencia con magnetización, que da **el mismo** \(\mathbf{A}\) porque depende solo de las corrientes.
+
+### Paso 2 — Magnetización equivalente (estrategia)
+
+Buscamos un campo \(\mathbf{M}\) **constante** dentro de la bola \(r<R\) (y \(\mathbf{M}=\mathbf{0}\) afuera) tal que su corriente superficial sea exactamente la del cascarón:
+
+\[
+\mathbf{K}_m=\mathbf{M}\times\hat{\mathbf{n}}=\mathbf{M}\times\hat{\mathbf{r}}.
+\]
+
+Proponemos \(\mathbf{M}=M\hat{\mathbf{z}}\) (alineada con \(\boldsymbol{\omega}\), por simetría). Entonces
 
 \[
 \mathbf{M}\times\hat{\mathbf{r}}=M\sin\theta\,\hat{\boldsymbol{\varphi}}.
 \]
 
-Igualando a \(\mathbf{K}\):
+Igualando a \(\mathbf{K}=K_0\sin\theta\,\hat{\boldsymbol{\varphi}}\):
 
 \[
-M=K_0=\sigma_0\omega R
-\qquad\Rightarrow\qquad
-\boxed{\mathbf{M}=\sigma_0 R\,\boldsymbol{\omega}}
+M=K_0=\sigma_0\omega R.
 \]
 
-(porque \(\boldsymbol{\omega}=\omega\hat{\mathbf{z}}\)).
-
-Adentro de esa esfera equivalente: \(\mathbf{J}_m=\nabla\times\mathbf{M}=0\).  
-En el cascarón real tampoco hay corriente de volumen. Misma **K**, mismo **J=0** → mismo **A** y mismo **B** en todo el espacio.
-
-### Paso 3 — Potencial vector A
-
-#### (i) Interior (\(r<R\))
-
-Para campo **B** uniforme, una elección válida de potencial vector es
+Por lo tanto
 
 \[
-\mathbf{A}=\frac12\mathbf{B}\times\mathbf{r}.
+\boxed{\mathbf{M}=\sigma_0 R\,\boldsymbol{\omega}}.
 \]
 
-(Se verifica directo: \(\nabla\times(\mathbf{B}\times\mathbf{r})=\mathbf{B}(\nabla\cdot\mathbf{r})-(\mathbf{B}\cdot\nabla)\mathbf{r}=3\mathbf{B}-\mathbf{B}=2\mathbf{B}\), luego \(\nabla\times(\tfrac12\mathbf{B}\times\mathbf{r})=\mathbf{B}\).)
-
-Para la esfera con **M** uniforme se obtiene (resultado estándar; lo recordamos y lo usamos)
+Además, como \(\mathbf{M}\) es uniforme dentro,
 
 \[
-\mathbf{B}_{\text{int}}=\frac{2}{3}\mu_0\mathbf{M}.
+\mathbf{J}_m=\nabla\times\mathbf{M}=\mathbf{0}.
 \]
 
-Justificación breve: el campo de una esfera magnetizada uniforme es el de un dipolo afuera y uniforme adentro; las condiciones de contorno de **B** y **H** (o el potencial escalar magnético) fijan el factor \(2/3\). Equivalentemente, \(\mathbf{H}_{\text{int}}=-\mathbf{M}/3\) y \(\mathbf{B}=\mu_0(\mathbf{H}+\mathbf{M})=\tfrac{2}{3}\mu_0\mathbf{M}\).
+En el cascarón real tampoco hay corriente de volumen: solo \(\mathbf{K}\) en \(r=R\).
+
+**Conclusión:** el cascarón cargado en rotación y la bola con \(\mathbf{M}=\sigma_0 R\boldsymbol{\omega}\) uniforme producen **las mismas corrientes**. Por lo tanto producen el **mismo** \(\mathbf{A}\) y el **mismo** \(\mathbf{B}\) en todo el espacio.
+
+Repetimos: esto es una **equivalencia de corrientes**, no una afirmación de que el cascarón esté magnetizado “de verdad”.
+
+### Paso 3 — Potencial escalar magnético
+
+En el problema equivalente:
+
+- No hay corrientes **libres** \(\mathbf{J}_f\) (las corrientes de magnetización ya están “metidas” en \(\mathbf{M}\)).
+- Entonces \(\nabla\times\mathbf{H}=\mathbf{0}\) adentro y afuera ⇒ \(\mathbf{H}=-\nabla\Phi_M\).
+- \(\mathbf{M}\) es uniforme a trozos ⇒ \(\nabla^2\Phi_M=0\) en \(r<R\) y en \(r>R\).
+
+Por simetría azimutal y porque la condición de borde traerá un \(\cos\theta\) (lo veremos), tomamos
+
+\[
+\Phi_{\text{in}}(r,\theta)=\alpha\, r\cos\theta
+\qquad(r<R),
+\]
+
+\[
+\Phi_{\text{out}}(r,\theta)=\frac{\beta}{r^2}\cos\theta
+\qquad(r>R).
+\]
+
+Calculemos los gradientes (útiles ya):
+
+En esféricas, para una función \(f(r,\theta)\),
+
+\[
+\nabla f
+=
+\frac{\partial f}{\partial r}\hat{\mathbf{r}}
++
+\frac{1}{r}\frac{\partial f}{\partial\theta}\hat{\boldsymbol{\theta}}.
+\]
 
 Entonces
 
 \[
-\mathbf{A}_{\text{int}}
+\mathbf{H}_{\text{in}}
 =
-\frac12\left(\frac{2}{3}\mu_0\mathbf{M}\right)\times\mathbf{r}
+-\nabla\Phi_{\text{in}}
 =
-\frac{\mu_0}{3}\mathbf{M}\times\mathbf{r}.
+-\alpha\cos\theta\,\hat{\mathbf{r}}
++\alpha\sin\theta\,\hat{\boldsymbol{\theta}}
+=
+-\alpha\,\hat{\mathbf{z}}.
 \]
 
-Con \(\mathbf{M}=\sigma_0 R\,\boldsymbol{\omega}\):
+(La última igualdad: \(\hat{\mathbf{z}}=\cos\theta\hat{\mathbf{r}}-\sin\theta\hat{\boldsymbol{\theta}}\).)
+
+\[
+\mathbf{H}_{\text{out}}
+=
+-\nabla\Phi_{\text{out}}
+=
+\frac{2\beta}{r^3}\cos\theta\,\hat{\mathbf{r}}
++
+\frac{\beta}{r^3}\sin\theta\,\hat{\boldsymbol{\theta}}.
+\]
+
+### Paso 4 — Condiciones de borde en \(r=R\)
+
+En la superficie \(r=R\):
+
+**(i) Continuidad de \(H_\parallel\)** (no hay corriente libre superficial; la \(\mathbf{K}_m\) ya está contabilizada vía \(\mathbf{M}\)).
+
+Equivalente práctico: continuidad de \(\Phi_M\) (si \(\Phi\to 0\) en el infinito y es regular en el origen):
+
+\[
+\Phi_{\text{in}}(R,\theta)=\Phi_{\text{out}}(R,\theta)
+\]
+
+\[
+\alpha R\cos\theta=\frac{\beta}{R^2}\cos\theta
+\quad\Rightarrow\quad
+\beta=\alpha R^3.
+\]
+
+**(ii) Continuidad de \(B_r\)** (porque \(\nabla\cdot\mathbf{B}=0\) ⇒ el flujo normal no puede saltar si no hay monopolos):
+
+\[
+B_r^{\text{out}}=B_r^{\text{in}}
+\quad\text{en }r=R.
+\]
+
+Relaciones \(\mathbf{B}\)–\(\mathbf{H}\):
+
+- Afuera: \(\mathbf{M}=\mathbf{0}\) ⇒ \(\mathbf{B}_{\text{out}}=\mu_0\mathbf{H}_{\text{out}}\).
+- Adentro: \(\mathbf{B}_{\text{in}}=\mu_0(\mathbf{H}_{\text{in}}+\mathbf{M})\).
+
+Componentes radiales en \(r=R\):
+
+\[
+B_r^{\text{out}}
+=
+\mu_0 H_r^{\text{out}}
+=
+\mu_0\cdot\frac{2\beta}{R^3}\cos\theta.
+\]
+
+\[
+B_r^{\text{in}}
+=
+\mu_0\bigl(H_r^{\text{in}}+M_r\bigr)
+=
+\mu_0\bigl(-\alpha\cos\theta+M\cos\theta\bigr)
+=
+\mu_0(M-\alpha)\cos\theta.
+\]
+
+Igualando:
+
+\[
+\frac{2\beta}{R^3}=M-\alpha.
+\]
+
+Con \(\beta=\alpha R^3\):
+
+\[
+\frac{2\alpha R^3}{R^3}=M-\alpha
+\quad\Rightarrow\quad
+2\alpha=M-\alpha
+\quad\Rightarrow\quad
+3\alpha=M
+\quad\Rightarrow\quad
+\alpha=\frac{M}{3}.
+\]
+
+Luego
+
+\[
+\beta=\frac{M}{3}R^3.
+\]
+
+### Paso 5 — Campos \(\mathbf{H}\) y \(\mathbf{B}\) (ítem b)
+
+#### Interior \(r<R\)
+
+\[
+\mathbf{H}_{\text{in}}=-\frac{M}{3}\hat{\mathbf{z}}.
+\]
+
+\[
+\mathbf{B}_{\text{in}}
+=
+\mu_0\bigl(\mathbf{H}_{\text{in}}+\mathbf{M}\bigr)
+=
+\mu_0\Bigl(-\frac{M}{3}\hat{\mathbf{z}}+M\hat{\mathbf{z}}\Bigr)
+=
+\mu_0\cdot\frac{2M}{3}\hat{\mathbf{z}}.
+\]
+
+Con \(M=\sigma_0\omega R\):
 
 \[
 \boxed{
-\mathbf{A}(\mathbf{r})
+\mathbf{B}(\mathbf{r})
 =
-\frac{\mu_0\sigma_0 R}{3}\,\boldsymbol{\omega}\times\mathbf{r}
-\qquad (r<R)
+\frac{2}{3}\mu_0\sigma_0\omega R\,\hat{\mathbf{z}}
+=
+\frac{2}{3}\mu_0\sigma_0 R\,\boldsymbol{\omega}
+\qquad(r<R)
 }
 \]
 
-En componentes (eje \(z\)):
+Es un campo **uniforme**, paralelo al eje de rotación.
+
+#### Exterior \(r>R\)
 
 \[
-A_\varphi(r,\theta)=\frac{\mu_0\sigma_0\omega R}{3}\,r\sin\theta,
-\quad A_r=A_\theta=0.
+\Phi_{\text{out}}
+=
+\frac{M R^3}{3}\frac{\cos\theta}{r^2}.
 \]
 
-#### (ii) Exterior (\(r>R\))
-
-Afuera, todo se ve como un **dipolo magnético**
+El potencial de un dipolo magnético (definición de \(\mathbf{m}\)), con la convención \(\mathbf{H}=-\nabla\Phi_M\), es
 
 \[
+\Phi_M^{\text{(dipolo)}}
+=
+\frac{1}{4\pi}\frac{\mathbf{m}\cdot\hat{\mathbf{r}}}{r^2}
+=
+\frac{m\cos\theta}{4\pi r^2}
+\quad\text{si }\mathbf{m}=m\hat{\mathbf{z}}.
+\]
+
+Comparando:
+
+\[
+\frac{m}{4\pi}=\frac{M R^3}{3}
+\quad\Rightarrow\quad
+m=\frac{4\pi}{3}M R^3.
+\]
+
+Con \(M=\sigma_0\omega R\):
+
+\[
+\boxed{
 \mathbf{m}
 =
-\int\mathbf{M}\,dV
-=
-\mathbf{M}\cdot\frac{4\pi}{3}R^3
-=
-\frac{4\pi}{3}R^3\sigma_0 R\,\boldsymbol{\omega}
-=
-\frac{4\pi}{3}\sigma_0\omega R^4\,\hat{\mathbf{z}}.
-\]
-
-El potencial vector de un dipolo es
-
-\[
-\mathbf{A}(\mathbf{r})
-=
-\frac{\mu_0}{4\pi}\frac{\mathbf{m}\times\hat{\mathbf{r}}}{r^2}.
-\]
-
-Sustituyendo **m**:
-
-\[
-\mathbf{A}(\mathbf{r})
-=
-\frac{\mu_0}{4\pi}\cdot\frac{4\pi}{3}\sigma_0\omega R^4
-\frac{\hat{\mathbf{z}}\times\hat{\mathbf{r}}}{r^2}
-=
-\frac{\mu_0\sigma_0\omega R^4}{3}\frac{\sin\theta}{r^2}\,\hat{\boldsymbol{\varphi}}.
-\]
-
-En forma vectorial compacta (porque \(\boldsymbol{\omega}\times\mathbf{r}=\omega r\sin\theta\,\hat{\boldsymbol{\varphi}}\)):
-
-\[
-\boxed{
-\mathbf{A}(\mathbf{r})
-=
-\frac{\mu_0\sigma_0 R}{3}\left(\frac{R}{r}\right)^3\boldsymbol{\omega}\times\mathbf{r}
-\qquad (r>R)
+\frac{4\pi}{3}\sigma_0\omega R^4\,\hat{\mathbf{z}}
 }
 \]
 
-**Chequeo de continuidad en \(r=R\):** ambas expresiones dan
-
-\[
-\mathbf{A}(R,\theta)=\frac{\mu_0\sigma_0\omega R^2}{3}\sin\theta\,\hat{\boldsymbol{\varphi}}.
-\]
-
-Bien: **A** paralelo a la superficie es continuo (no hay capa delta de **B** tangencial “rara” que lo rompa; la discontinuidad va en derivadas / en **B** tangencial ligada a **K**).
-
-### Paso 4 — Campo B
-
-#### (i) Interior
-
-\[
-\mathbf{B}_{\text{int}}
-=
-\frac{2}{3}\mu_0\mathbf{M}
-=
-\frac{2}{3}\mu_0\sigma_0 R\,\boldsymbol{\omega}.
-\]
-
-Es decir, **uniforme** y paralelo a **ω**:
+Y el campo de dipolo (afuera, vacío: \(\mathbf{B}=\mu_0\mathbf{H}\)) es
 
 \[
 \boxed{
 \mathbf{B}(\mathbf{r})
 =
-\frac{2\mu_0\sigma_0\omega R}{3}\,\hat{\mathbf{z}}
-\qquad (r<R)
+\frac{\mu_0}{4\pi}
+\frac{3(\mathbf{m}\cdot\hat{\mathbf{r}})\hat{\mathbf{r}}-\mathbf{m}}{r^3}
+\qquad(r>R)
 }
 \]
 
-Verificación rápida con \(\mathbf{A}=\frac{\mu_0\sigma_0\omega R}{3}r\sin\theta\,\hat{\boldsymbol{\varphi}}\):
-
-En esféricas, con solo \(A_\varphi(r,\theta)\),
-
-\[
-B_r=\frac{1}{r\sin\theta}\frac{\partial}{\partial\theta}(\sin\theta\,A_\varphi)
-=\frac{2\mu_0\sigma_0\omega R}{3}\cos\theta,
-\]
-
-\[
-B_\theta=-\frac{1}{r}\frac{\partial}{\partial r}(r A_\varphi)
-=-\frac{2\mu_0\sigma_0\omega R}{3}\sin\theta,
-\]
-
-\[
-B_\varphi=0.
-\]
-
-Eso es exactamente \(\mathbf{B}=B\hat{\mathbf{z}}\) escrito en esféricas:  
-\(B_r=B\cos\theta\), \(B_\theta=-B\sin\theta\), con \(B=\frac{2\mu_0\sigma_0\omega R}{3}\). Correcto.
-
-#### (ii) Exterior
-
-Campo de dipolo con
-
-\[
-\mathbf{m}=\frac{4\pi}{3}\sigma_0\omega R^4\,\hat{\mathbf{z}}:
-\]
-
-\[
-\boxed{
-\mathbf{B}(\mathbf{r})
-=
-\frac{\mu_0}{4\pi}\frac{3(\mathbf{m}\cdot\hat{\mathbf{r}})\hat{\mathbf{r}}-\mathbf{m}}{r^3}
-\qquad (r>R)
-}
-\]
-
-Explícitamente:
+Componentes (sustituyendo \(m=\frac{4\pi}{3}\sigma_0\omega R^4\)):
 
 \[
 B_r
@@ -398,69 +616,237 @@ B_\theta
 B_\varphi=0.
 \]
 
-(Con \(m=|\mathbf{m}|=\frac{4\pi}{3}\sigma_0\omega R^4\).)
+**De dónde sale la fórmula del dipolo:** es el campo \(\mathbf{H}=-\nabla\Phi\) con \(\Phi=\frac{1}{4\pi}\frac{m\cos\theta}{r^2}\). Haciendo el gradiente en esféricas se obtienen exactamente esas componentes. No es un acto de fe: es \(\mathbf{H}=-\nabla\Phi\) aplicado a ese \(\Phi\).
+
+### Paso 6 — Potencial vector \(\mathbf{A}\) (ítem a)
+
+Recordemos: \(\mathbf{B}=\nabla\times\mathbf{A}\). Hay que encontrar un \(\mathbf{A}\) cuyo rotor sea el \(\mathbf{B}\) que ya tenemos, con \(\mathbf{A}\to 0\) en el infinito y continuo en lo posible.
+
+#### Interior: \(\mathbf{B}\) uniforme
+
+Si \(\mathbf{B}=B\hat{\mathbf{z}}\) es constante, una elección válida es
+
+\[
+\mathbf{A}=\frac12\mathbf{B}\times\mathbf{r}.
+\]
+
+**Verificación explícita** (para que no quede “de memoria”):
+
+Identidad vectorial (campos constantes):
+
+\[
+\nabla\times(\mathbf{B}\times\mathbf{r})
+=
+\mathbf{B}(\nabla\cdot\mathbf{r})-(\mathbf{B}\cdot\nabla)\mathbf{r}
+=
+\mathbf{B}\cdot 3-\mathbf{B}
+=
+2\mathbf{B}.
+\]
+
+Por lo tanto
+
+\[
+\nabla\times\Bigl(\frac12\mathbf{B}\times\mathbf{r}\Bigr)=\mathbf{B}.
+\]
+
+Con \(B=\frac{2}{3}\mu_0 M\):
+
+\[
+\mathbf{A}_{\text{in}}
+=
+\frac12\cdot\frac{2}{3}\mu_0 M\,\hat{\mathbf{z}}\times\mathbf{r}
+=
+\frac{\mu_0}{3}\mathbf{M}\times\mathbf{r}.
+\]
+
+Con \(\mathbf{M}=\sigma_0 R\boldsymbol{\omega}\):
+
+\[
+\boxed{
+\mathbf{A}(\mathbf{r})
+=
+\frac{\mu_0\sigma_0 R}{3}\,\boldsymbol{\omega}\times\mathbf{r}
+\qquad(r<R)
+}
+\]
+
+En componentes:
+
+\[
+A_\varphi=\frac{\mu_0\sigma_0\omega R}{3}\,r\sin\theta,
+\quad A_r=A_\theta=0.
+\]
+
+#### Exterior: campo de dipolo
+
+Para un dipolo \(\mathbf{m}\) en el origen, el potencial vector (gauge de Coulomb, \(\mathbf{A}\to 0\) en \(\infty\)) es
+
+\[
+\mathbf{A}(\mathbf{r})
+=
+\frac{\mu_0}{4\pi}\frac{\mathbf{m}\times\hat{\mathbf{r}}}{r^2}.
+\]
+
+**Motivación breve:** es el término líder de la expansión multipolar de
+
+\[
+\mathbf{A}=\frac{\mu_0}{4\pi}\int\frac{\mathbf{J}(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|}\,dV'
+\]
+
+cuando el sistema de corrientes está localizado cerca del origen y \(r\) es grande; el momento dipolar magnético aparece como
+
+\[
+\mathbf{m}=\frac12\int\mathbf{r}'\times\mathbf{J}(\mathbf{r}')\,dV',
+\]
+
+que para magnetización uniforme coincide con \(\int\mathbf{M}\,dV=\frac{4\pi}{3}R^3\mathbf{M}\).
+
+Sustituyendo \(\mathbf{m}=\frac{4\pi}{3}\sigma_0\omega R^4\hat{\mathbf{z}}\):
+
+\[
+\mathbf{A}
+=
+\frac{\mu_0}{4\pi}\cdot\frac{4\pi}{3}\sigma_0\omega R^4
+\frac{\hat{\mathbf{z}}\times\hat{\mathbf{r}}}{r^2}
+=
+\frac{\mu_0\sigma_0\omega R^4}{3}\frac{\sin\theta}{r^2}\,\hat{\boldsymbol{\varphi}}.
+\]
+
+Forma vectorial compacta:
+
+\[
+\boxed{
+\mathbf{A}(\mathbf{r})
+=
+\frac{\mu_0\sigma_0 R}{3}\left(\frac{R}{r}\right)^3\boldsymbol{\omega}\times\mathbf{r}
+\qquad(r>R)
+}
+\]
+
+#### Continuidad de \(\mathbf{A}\) en \(r=R\)
+
+Interior en \(r=R\):
+
+\[
+A_\varphi=\frac{\mu_0\sigma_0\omega R}{3}\,R\sin\theta=\frac{\mu_0\sigma_0\omega R^2}{3}\sin\theta.
+\]
+
+Exterior en \(r=R\):
+
+\[
+A_\varphi=\frac{\mu_0\sigma_0\omega R^4}{3}\frac{\sin\theta}{R^2}=\frac{\mu_0\sigma_0\omega R^2}{3}\sin\theta.
+\]
+
+Iguales. Bien.
+
+#### Chequeo: \(\nabla\times\mathbf{A}\) interior recupera \(\mathbf{B}\)
+
+Con solo \(A_\varphi(r,\theta)=C r\sin\theta\) y \(C=\frac{\mu_0\sigma_0\omega R}{3}\), las fórmulas del rotor en esféricas dan:
+
+\[
+B_r
+=
+\frac{1}{r\sin\theta}\frac{\partial}{\partial\theta}(\sin\theta\,A_\varphi)
+=
+\frac{1}{r\sin\theta}\frac{\partial}{\partial\theta}(C r\sin^2\theta)
+=
+2C\cos\theta,
+\]
+
+\[
+B_\theta
+=
+-\frac{1}{r}\frac{\partial}{\partial r}(r A_\varphi)
+=
+-\frac{1}{r}\frac{\partial}{\partial r}(C r^2\sin\theta)
+=
+-2C\sin\theta,
+\]
+
+\[
+B_\varphi=0.
+\]
+
+Eso es \(\mathbf{B}=2C\,\hat{\mathbf{z}}\) porque
+
+\[
+B_r=B\cos\theta,\quad B_\theta=-B\sin\theta
+\quad\text{con}\quad
+B=2C=\frac{2\mu_0\sigma_0\omega R}{3}.
+\]
+
+Coincide con el Paso 5. El círculo se cierra.
+
+---
 
 ## 7. Resultado final
 
-Con \(\boldsymbol{\omega}=\omega\hat{\mathbf{z}}\) y radio \(R\):
+Con radio \(R\) y \(\boldsymbol{\omega}=\omega\hat{\mathbf{z}}\):
 
-**Potencial vector**
+**Magnetización equivalente:** \(\mathbf{M}=\sigma_0 R\boldsymbol{\omega}\).
+
+**Momento dipolar:** \(\mathbf{m}=\dfrac{4\pi}{3}\sigma_0\omega R^4\,\hat{\mathbf{z}}\).
+
+### (a) Potencial vector
 
 \[
 \mathbf{A}(\mathbf{r})
 =
 \begin{cases}
-\dfrac{\mu_0\sigma_0 R}{3}\,\boldsymbol{\omega}\times\mathbf{r}, & r<R,\\[10pt]
+\dfrac{\mu_0\sigma_0 R}{3}\,\boldsymbol{\omega}\times\mathbf{r}, & r<R,\\[12pt]
 \dfrac{\mu_0\sigma_0 R}{3}\left(\dfrac{R}{r}\right)^3\boldsymbol{\omega}\times\mathbf{r}, & r>R.
 \end{cases}
 \]
 
-**Campo de inducción**
+### (b) Campo de inducción
 
 \[
 \mathbf{B}(\mathbf{r})
 =
 \begin{cases}
-\dfrac{2}{3}\mu_0\sigma_0 R\,\boldsymbol{\omega}, & r<R,\\[10pt]
-\dfrac{\mu_0}{4\pi}\dfrac{3(\mathbf{m}\cdot\hat{\mathbf{r}})\hat{\mathbf{r}}-\mathbf{m}}{r^3}, & r>R,
+\dfrac{2}{3}\mu_0\sigma_0 R\,\boldsymbol{\omega}, & r<R,\\[12pt]
+\dfrac{\mu_0}{4\pi}\dfrac{3(\mathbf{m}\cdot\hat{\mathbf{r}})\hat{\mathbf{r}}-\mathbf{m}}{r^3}, & r>R.
 \end{cases}
 \]
 
-con momento dipolar
-
-\[
-\mathbf{m}=\frac{4\pi}{3}\sigma_0\omega R^4\,\hat{\mathbf{z}}
-=\frac{4\pi R^3}{3}\sigma_0 R\,\boldsymbol{\omega}.
-\]
+---
 
 ## 8. Chequeos
 
-1. **ω → 0:** no hay movimiento → **K=0** → **A=0**, **B=0**. OK.
-2. **σ₀ → 0:** sin carga → sin corriente → campos nulos. OK.
-3. **Unidades:** σ₀ ~ C/m², ω ~ 1/s, R ~ m ⇒ σ₀ ω R ~ C/(m·s) = A/m = unidades de **K** y de **M**. Luego μ₀ M ~ T. OK.
-4. **Lejos (r ≫ R):** **B** cae como \(1/r^3\) (dipolo). Esperable: distribución localizada de corriente con momento neto.
-5. **Discontinuidad de B tangencial:** \(\hat{\mathbf{r}}\times(\mathbf{B}_{\text{out}}-\mathbf{B}_{\text{in}})=\mu_0\mathbf{K}\). En el ecuador (θ=π/2), **K** es máximo; la saltadura de **B_θ** debe ser μ₀ K₀. Con los valores de arriba se cumple (ejercicio rápido de examen).
-6. **Analogía con el Prob. 1a:** ahí pedían **J** (o **K**) de la esfera rotante; acá usamos esa **K** para construir **A** y **B**.
+1. **\(\omega=0\)** o **\(\sigma_0=0\)**: no hay corriente ⇒ \(\mathbf{A}=\mathbf{0}\), \(\mathbf{B}=\mathbf{0}\). OK.
+2. **Unidades:** \(\sigma_0\omega R\) tiene unidades de A/m (igual que \(\mathbf{K}\) y que \(\mathbf{M}\)). Luego \(\mu_0 M\) es tesla. OK.
+3. **Lejos:** \(\mathbf{B}\sim 1/r^3\) (dipolo). OK para un sistema localizado de corrientes.
+4. **Polos vs ecuador:** \(K\propto\sin\theta\) se anula en polos; coherente con \(v=\omega R\sin\theta\).
+5. **Continuidad de \(A_\varphi\)** en \(r=R\): verificada.
+6. **\(\nabla\times\mathbf{A}=\mathbf{B}\)** adentro: verificado componente a componente.
+
+---
 
 ## 9. Errores típicos de examen
 
-- Olvidar que **v = ω R sinθ**, y poner **K** constante (mal: en los polos **K=0**).
-- Usar el **m** de un dipolo “de carga” eléctrico; acá **m** sale de **M** volumétrico equivalente o de integrar corrientes.
-- Escribir el campo interior como \(\frac{2}{3}\mu_0\mathbf{K}\) o confundir **M** con **K** sin el factor geométrico (acá \(M=K_0=\sigma_0\omega R\)).
-- Aplicar la fórmula del dipolo también **adentro** (no: adentro es uniforme).
-- Mezclar SI y cgs (factores 4π, c, etc.).
-- Decir “el cascarón es una esfera magnetizada” en vez de “es equivalente en corrientes”.
+- Poner \(\mathbf{K}\) constante (olvidar el \(\sin\theta\)).
+- Usar la fórmula del dipolo también **adentro**.
+- Confundir \(\mathbf{M}\) con \(\mathbf{K}\) sin escribir \(\mathbf{K}=\mathbf{M}\times\hat{\mathbf{r}}\).
+- Mezclar \(\mathbf{B}\) y \(\mathbf{H}\) (adentro \(\mathbf{B}=\mu_0(\mathbf{H}+\mathbf{M})\), no \(\mu_0\mathbf{H}\)).
+- Decir “el cascarón está magnetizado” en vez de “es equivalente en corrientes”.
+- Olvidar el radio \(R\) en \(M=\sigma_0\omega R\).
 
-## 10. Mini-resumen para recordar
+---
 
-> Cascarón con σ₀ que gira ⇒ **K = σ₀ (ω × r) = σ₀ ω R sinθ φ̂**.  
-> Eso imita **M = σ₀ R ω** uniforme.  
-> **Adentro:** **B = (2/3) μ₀ M** (uniforme), **A = (μ₀/3) M × r**.  
-> **Afuera:** dipolo con **m = (4π/3) R³ M**.
+## 10. Mini-resumen
+
+> Cascarón con \(\sigma_0\) que gira ⇒ \(\mathbf{K}=\sigma_0\omega R\sin\theta\,\hat{\boldsymbol{\varphi}}\).  
+> Equivale a \(\mathbf{M}=\sigma_0 R\boldsymbol{\omega}\) uniforme.  
+> Laplace + bordes ⇒ adentro \(\mathbf{B}=\tfrac{2}{3}\mu_0\mathbf{M}\) (uniforme); afuera dipolo \(\mathbf{m}=\tfrac{4\pi}{3}R^3\mathbf{M}\).  
+> \(\mathbf{A}=\tfrac12\mathbf{B}\times\mathbf{r}\) adentro; \(\mathbf{A}=\frac{\mu_0}{4\pi}\frac{\mathbf{m}\times\hat{\mathbf{r}}}{r^2}\) afuera.
 
 ---
 
 ## Siguiente paso lógico
 
-- **Variante de práctica:** repetir el cálculo de **B** exterior sacando **∇×A** desde \(A_\varphi\propto\sin\theta/r^2\) (sin invocar de memoria el dipolo).
-- **Siguiente de la guía:** Prob. 4 (disco rotante) para contrastar “eje + lejos” vs este cascarón; o Prob. 6 si querés saltar a potencial escalar magnético.
+Decime cuál querés:
+
+1. **Misma idea, otra ruta:** calcular \(\mathbf{A}\) haciendo la integral con expansión de \(1/|\mathbf{r}-\mathbf{r}'|\) (sin pasar por \(\mathbf{M}\)).
+2. **Práctica:** sacar \(\mathbf{B}\) exterior haciendo \(\nabla\times\mathbf{A}\) desde \(A_\varphi\propto\sin\theta/r^2\).
+3. **Siguiente ejercicio de la guía:** problema 4 (disco) o problema 6.

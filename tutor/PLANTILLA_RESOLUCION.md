@@ -1,44 +1,54 @@
-# Plantilla: resolución ZERO TO HERO
+# Plantilla: resolución ZERO TO HERO (completa)
 
-Usar para cada ejercicio, ítem o concepto pedido.
+Usar siempre que el alumno diga zero to hero / desde cero / desarrolalo completo.
+
+Checklist anti-vaguedad (antes de dar por terminado):
+
+- [ ] Definí cada símbolo la primera vez
+- [ ] No usé “fórmula conocida” sin derivarla o justificarla
+- [ ] Expliqué el significado físico antes de las cuentas
+- [ ] Escribí las cuentas intermedias (no solo el resultado de cada paso)
+- [ ] Si usé coordenadas/operadores, expliqué qué son
+- [ ] Si usé equivalencia/superposición, dije que es estrategia
+- [ ] Incluí chequeos y errores típicos
 
 ---
 
-## 1. Qué pide
+## 0. Desde cero del tema
 
-(En criollo: qué hay que encontrar o demostrar.)
+(Qué es esto en criollo. Vocabulario mínimo del área.)
+
+## 1. Qué pide
 
 ## 2. Idea central
 
-(Sin cuentas ni código: la estrategia en una idea.)
+(Sin cuentas.)
 
 ## 3. Herramientas previas
 
-(Solo las necesarias. Cada una explicada: qué es y por qué aplica.)
+Para cada herramienta:
+- qué es
+- de dónde sale
+- por qué la usamos acá
 
 ## 4. Setup
 
-- Datos:
-- Hipótesis / aproximaciones:
-- Diagrama mental:
-- Variables y notación (definir cada símbolo):
+- Datos
+- Hipótesis
+- Diagrama mental
+- Notación (tabla de símbolos)
 
 ## 5. Pasos numerados
 
-1. Paso 1 — …
-2. Paso 2 — …
-3. Paso 3 — …
+1. …
+2. …
 
 ## 6. Desarrollo completo
 
-(Paso a paso, sin saltos. Toda fórmula motivada o derivada.)
+### Paso 1 — título
+(texto + cuentas)
 
-### Paso 1
-
-…
-
-### Paso 2
-
+### Paso 2 — título
 …
 
 ## 7. Resultado final
@@ -47,21 +57,8 @@ Usar para cada ejercicio, ítem o concepto pedido.
 
 ## 8. Chequeos
 
-- Caso límite:
-- Unidades / dimensiones:
-- Coherencia / ejemplo chico:
-
 ## 9. Errores típicos de examen
 
-- …
-- …
-
-## 10. Mini-resumen para recordar
-
-…
-
----
+## 10. Mini-resumen
 
 ## Siguiente paso lógico
-
-(Siguiente ítem, siguiente ejercicio, o variante de práctica.)
