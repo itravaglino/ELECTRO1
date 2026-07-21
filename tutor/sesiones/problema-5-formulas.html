@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EMI Guía 7 — Problema 5</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    });"></script>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --ink: #1a1a1a;
+      --muted: #555;
+      --accent: #0b5fff;
+      --card: #ffffff;
+      --line: #e4e0d6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #e8eefc 0%, transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, #f3ebe0 0%, transparent 50%),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+    h1, h2, h3 {
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    h1 { font-size: 1.85rem; margin: 0 0 0.4rem; }
+    h2 {
+      font-size: 1.25rem;
+      margin: 2.2rem 0 0.75rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid var(--line);
+    }
+    h3 { font-size: 1.05rem; margin: 1.4rem 0 0.5rem; color: #222; }
+    p, li { font-size: 1.05rem; }
+    .lead { color: var(--muted); font-size: 1.05rem; margin: 0 0 1.5rem; }
+    .box {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      margin: 1rem 0;
+    }
+    .result {
+      border-left: 4px solid var(--accent);
+      background: #f3f7ff;
+    }
+    .katex-display { margin: 0.9rem 0; overflow-x: auto; overflow-y: hidden; }
+    ul { padding-left: 1.2rem; }
+    .tip {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-top: 2rem;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.9em;
+      background: #eee;
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Problema 5 — Cascarón esférico que gira</h1>
+    <p class="lead">
+      Electromagnetismo I · Guía 7 · Magnetostática · resolución paso a paso
+    </p>
+
+    <div class="box">
+      <p>
+        Cascarón de radio $R$, carga superficial uniforme $\sigma_0$,
+        gira con velocidad angular constante $\boldsymbol{\omega}$
+        alrededor de un eje por el centro.
+      </p>
+      <ul>
+        <li><strong>(a)</strong> potencial vector $\mathbf{A}$ en cualquier punto</li>
+        <li><strong>(b)</strong> campo $\mathbf{B}$ en cualquier punto</li>
+      </ul>
+    </div>
+
+    <h2>1. Qué pide</h2>
+    <p>
+      Convertir “esfera cargada que gira” en una corriente, y de ahí sacar
+      $\mathbf{A}$ y $\mathbf{B}$ adentro ($r&lt;R$) y afuera ($r&gt;R$).
+    </p>
+
+    <h2>2. Idea central</h2>
+    <p>
+      Carga en movimiento = corriente. En la superficie eso se describe con
+      una corriente superficial $\mathbf{K}$.
+    </p>
+    <p>
+      Esa $\mathbf{K}$ tiene forma “dipolar” (máxima en el ecuador, nula en los polos).
+      Entonces:
+    </p>
+    <ul>
+      <li><strong>afuera</strong> = campo de un dipolo magnético</li>
+      <li><strong>adentro</strong> = $\mathbf{B}$ uniforme, paralelo a $\boldsymbol{\omega}$</li>
+    </ul>
+
+    <h2>3. Herramientas previas</h2>
+
+    <h3>Velocidad de un punto que rota</h3>
+    $$
+    \mathbf{v} = \boldsymbol{\omega} \times \mathbf{r}'
+    $$
+
+    <h3>Corriente superficial (corriente por unidad de ancho)</h3>
+    $$
+    \mathbf{K} = \sigma \, \mathbf{v}
+    $$
+
+    <h3>Potencial vector (corriente solo en superficie)</h3>
+    $$
+    \mathbf{A}(\mathbf{r})
+    = \frac{\mu_0}{4\pi}
+    \int \frac{\mathbf{K}(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|} \, da'
+    $$
+    <p>y siempre</p>
+    $$
+    \mathbf{B} = \nabla \times \mathbf{A}
+    $$
+
+    <h3>Momento magnético</h3>
+    $$
+    \mathbf{m} = \frac{1}{2} \int \mathbf{r}' \times \mathbf{K} \, da'
+    $$
+    <p>Afuera, un dipolo da:</p>
+    $$
+    \mathbf{A}
+    = \frac{\mu_0}{4\pi} \frac{\mathbf{m} \times \mathbf{r}}{r^3}
+    $$
+    $$
+    \mathbf{B}
+    = \frac{\mu_0}{4\pi}
+    \frac{3(\mathbf{m}\cdot\hat{\mathbf{r}})\hat{\mathbf{r}} - \mathbf{m}}{r^3}
+    $$
+
+    <h2>4. Setup</h2>
+    <ul>
+      <li>Eje $z$ según $\boldsymbol{\omega} = \omega\,\hat{\mathbf{z}}$</li>
+      <li>Fuentes solo en $r' = R$</li>
+      <li>Vacío adentro y afuera ($\mu_0$)</li>
+      <li>$\boldsymbol{\omega}$ constante $\Rightarrow$ magnetostática</li>
+    </ul>
+
+    <h2>5. Desarrollo</h2>
+
+    <h3>Paso 1 — Corriente superficial</h3>
+    <p>Sobre el cascarón:</p>
+    $$
+    \mathbf{v}
+    = \boldsymbol{\omega} \times \mathbf{r}'
+    = \omega R \sin\theta' \, \hat{\boldsymbol{\varphi}}'
+    $$
+    $$
+    \mathbf{K}
+    = \sigma_0 \mathbf{v}
+    = \sigma_0 \omega R \sin\theta' \, \hat{\boldsymbol{\varphi}}'
+    = \sigma_0\,(\boldsymbol{\omega}\times\mathbf{r}')\Big|_{r'=R}
+    $$
+
+    <h3>Paso 2 — Momento magnético</h3>
+    $$
+    \mathbf{m}
+    = \frac{1}{2}\sigma_0
+    \int \mathbf{r}' \times (\boldsymbol{\omega}\times\mathbf{r}') \, da'
+    $$
+    <p>Identidad vectorial:</p>
+    $$
+    \mathbf{a}\times(\mathbf{b}\times\mathbf{c})
+    = \mathbf{b}(\mathbf{a}\cdot\mathbf{c}) - \mathbf{c}(\mathbf{a}\cdot\mathbf{b})
+    $$
+    $$
+    \mathbf{r}'\times(\boldsymbol{\omega}\times\mathbf{r}')
+    = \boldsymbol{\omega}\,R^2 - \mathbf{r}'(\boldsymbol{\omega}\cdot\mathbf{r}')
+    $$
+    <p>
+      Integrando sobre la esfera
+      ($\int da' = 4\pi R^2$ y $\int\cos^2\theta'\,d\Omega' = 4\pi/3$)
+      se obtiene:
+    </p>
+    $$
+    \mathbf{m} = \frac{4\pi}{3}\,\sigma_0 R^4\,\boldsymbol{\omega}
+    $$
+
+    <h3>Paso 3 — Por qué solo dipolo</h3>
+    <p>
+      $\mathbf{K}\propto\sin\theta\,\hat{\boldsymbol{\varphi}}$ es la dependencia angular
+      de un dipolo a lo largo de $z$. Al expandir $1/|\mathbf{r}-\mathbf{r}'|$
+      solo contribuye $\ell=1$. Por eso afuera es dipolo exacto y adentro
+      $\mathbf{B}$ es uniforme.
+    </p>
+
+    <h3>Paso 4 — Potencial vector $\mathbf{A}$ (ítem a)</h3>
+    <p><strong>Exterior</strong> ($r &gt; R$):</p>
+    $$
+    \mathbf{A}_{\mathrm{ext}}(\mathbf{r})
+    = \frac{\mu_0}{4\pi}\frac{\mathbf{m}\times\mathbf{r}}{r^3}
+    = \frac{\mu_0\sigma_0 R^4}{3}\frac{\boldsymbol{\omega}\times\mathbf{r}}{r^3}
+    $$
+    <p><strong>Interior</strong> ($r &lt; R$):</p>
+    $$
+    \mathbf{A}_{\mathrm{int}}(\mathbf{r})
+    = \frac{\mu_0\sigma_0 R}{3}\,(\boldsymbol{\omega}\times\mathbf{r})
+    $$
+    <p>En $r=R$ ambos coinciden $\Rightarrow$ $\mathbf{A}$ continuo.</p>
+    <p>Componentes azimutales ($\boldsymbol{\omega}=\omega\hat{\mathbf{z}}$):</p>
+    $$
+    A_\varphi^{\mathrm{int}}
+    = \frac{\mu_0\sigma_0\omega R}{3}\, r\sin\theta
+    $$
+    $$
+    A_\varphi^{\mathrm{ext}}
+    = \frac{\mu_0\sigma_0\omega R^4}{3}\,\frac{\sin\theta}{r^2}
+    $$
+
+    <h3>Paso 5 — Campo $\mathbf{B}$ (ítem b)</h3>
+    <p><strong>Interior:</strong></p>
+    $$
+    \mathbf{A}_{\mathrm{int}}
+    = \frac{\mu_0\sigma_0 R\omega}{3}(-y,\,x,\,0)
+    $$
+    $$
+    B_z
+    = \partial_x A_y - \partial_y A_x
+    = \frac{2\mu_0\sigma_0 R\omega}{3}
+    $$
+    $$
+    \mathbf{B}_{\mathrm{int}}
+    = \frac{2}{3}\mu_0\sigma_0 R\,\boldsymbol{\omega}
+    $$
+    <p><strong>Exterior</strong> (dipolo):</p>
+    $$
+    \mathbf{B}_{\mathrm{ext}}(\mathbf{r})
+    = \frac{\mu_0}{4\pi}
+    \frac{3(\mathbf{m}\cdot\hat{\mathbf{r}})\hat{\mathbf{r}}-\mathbf{m}}{r^3}
+    $$
+
+    <h2>6. Resultado final</h2>
+    <div class="box result">
+      <p>Con</p>
+      $$
+      \mathbf{m} = \frac{4\pi}{3}\sigma_0 R^4\,\boldsymbol{\omega}
+      $$
+      <p><strong>(a) Potencial vector</strong></p>
+      $$
+      \mathbf{A}(\mathbf{r}) =
+      \begin{cases}
+      \dfrac{\mu_0\sigma_0 R}{3}\,(\boldsymbol{\omega}\times\mathbf{r}), & r &lt; R \\[14pt]
+      \dfrac{\mu_0\sigma_0 R^4}{3}\,\dfrac{\boldsymbol{\omega}\times\mathbf{r}}{r^3}, & r &gt; R
+      \end{cases}
+      $$
+      <p><strong>(b) Campo $\mathbf{B}$</strong></p>
+      $$
+      \mathbf{B}(\mathbf{r}) =
+      \begin{cases}
+      \dfrac{2}{3}\mu_0\sigma_0 R\,\boldsymbol{\omega}, & r &lt; R \\[14pt]
+      \dfrac{\mu_0}{4\pi}
+      \dfrac{3(\mathbf{m}\cdot\hat{\mathbf{r}})\hat{\mathbf{r}}-\mathbf{m}}{r^3},
+      & r &gt; R
+      \end{cases}
+      $$
+    </div>
+
+    <h2>7. Mini-resumen</h2>
+    <ol>
+      <li>$\mathbf{K}=\sigma_0(\boldsymbol{\omega}\times\mathbf{r})$</li>
+      <li>$\mathbf{m}=\dfrac{4\pi}{3}\sigma_0 R^4\boldsymbol{\omega}$</li>
+      <li>Afuera = dipolo; adentro $\mathbf{B}=\dfrac{2}{3}\mu_0\sigma_0 R\boldsymbol{\omega}$</li>
+    </ol>
+
+    <p class="tip">
+      Abrí este archivo en el navegador (Chrome / Firefox / Edge).
+      Las fórmulas se renderizan con KaTeX.
+      Archivo: <code>tutor/sesiones/problema-5-formulas.html</code>
+    </p>
+  </main>
+</body>
+</html>

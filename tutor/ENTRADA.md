@@ -1,30 +1,23 @@
-# Entrada para tutoría
-
-Completá lo que puedas y pedí la tutoría. Si algo falta, el tutor pedirá solo lo mínimo.
+# Entrada del alumno
 
 ## 1. Material
 
-Pegá el enunciado, subí el archivo a `tutor/inbox/`, o describí el apunte/PDF.
+- Archivo / ruta: `tutor/inbox/Guia_7_EMI_730b.pdf`
+- Materia / tema: Electromagnetismo I — Guía 7 Magnetostática
 
-```
-(material aquí)
-```
+## 2. Qué quiero hoy
 
-## 2. Qué quiero
+- Ejercicio / ítem / concepto: Problema 5 (a y b)
+- Si es guía completa: empezar por el 5
 
-- [ ] Explicar un concepto: ________________
-- [ ] Resolver ejercicio N° ____ ítem ____
-- [ ] Mapear una guía completa y después empezar por: ________________
+## 3. Contexto opcional
 
-## 3. Contexto (opcional)
+- Qué ya sé: (no declarado)
+- Dónde me trabo: (no declarado)
+- Nivel: facultad (EMI)
+- Fecha de examen / entrega: (no declarada)
+- Pedido extra: explicación ZERO TO HERO, sin código
 
-- Nivel: CBC / facultad / posgrado / otro: ____
-- Qué ya sé:
-- Dónde me trabo:
-- Fecha de examen (si hay):
+## 4. Notas libres
 
-## 4. Pedido concreto
-
-Escribí en una frase qué querés ahora, por ejemplo:
-
-> Empezá por el ejercicio 3b de la guía de Gauss.
+Resolución guardada en `tutor/sesiones/2026-07-21-guia7-problema-5.md`.
