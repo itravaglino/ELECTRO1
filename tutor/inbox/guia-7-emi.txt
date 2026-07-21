@@ -1,0 +1,93 @@
+Electromagnetismo I – 2026
+Gu´ıa No 7
+Magnetost´atica
+Problema 1: Encuentre la distribuci´on de corriente J correspondiente a cada una de las siguientes configuraciones:
+a) Una esfera de radio R con una distribuci´on uniforme de carga en su superficie, σ, que gira con velocidad angular
+constante ω.
+b) Un disco de espesor despreciable y radio R con una distribuci´on uniforme de carga en su superficie, σ, que gira
+con velocidad angular constante ω.
+Problema 2: Un cilindro conductor de radio a tiene un agujero cil´ındrico de radio b (vac´ıo). Suponga que los ejes de
+ambos cilindros son paralelos y est´an separados una distancia d (a > b + d). Suponga que la permeabilidad magn´etica
+del conductor es µ0 y que por el conductor circula una corriente I.
+a) Determine la densidad de corriente J en el conductor, suponiendo que es uniforme y paralela al eje del cilindro.
+b) Encuentre el campo de inducci´on magn´etica B en el agujero; para esto use la ley de Amp`ere y el principio de
+superposici´on.
+c) Calcule el campo de inducci´on magn´etica B en el seno del conductor.
+Problema 3: Una bobina cil´ındrica, de radio a y longitud L, tiene n vueltas por unidad de longitud (el bobinado es
+muy apretado). Suponga que por la bobina circula una corriente I.
+a) Considerando la superposici´on del campo producido por “espiras”, muestre que el campo de inducci´on magn´etica
+B en el eje del cilindro es
+B = µ0 n I
+2
+(cos θ1 + cos θ2) ˆk
+(1)
+donde los ´angulos est´an definidos en la figura.
+θ1
+θ2
+b) Recordando que el bobinado es muy apretado, determine la densidad de corriente superficial correspondiente
+con la corriente que circula por esta bobina (“densa” como una “lamina cil´ındrica”).
+c) Escriba una expresi´on para el potencial vector A y determine a partir del mismo el campo de inducci´on magn´etica
+B sobre el eje del bobinado. Compare este resultado con el presentado en el´ıtem a). Ayuda: Piense en la funci´on
+de Green en coordenadas cil´ındricas.
+Problema 4: Un disco circular de radio R con carga total Q homog´eneamente distribuida, rota con velocidad angular
+ω alrededor de un eje perpendicular al mismo y que pasa por su centro. Determine el campo B:
+a) para un punto arbitrario sobre el eje de rotaci´on.
+b) para un punto arbitrario del espacio, aunque muy muy alejado del disco.
+c) compare el resultado de a) con el de b) en donde sea posible.
+Problema 5: Un cascar´on esf´erico con una densidad de carga uniforme σ0, gira alrededor de un eje que pasa por el
+centro de la esfera con velocidad angular constante ω.
+a) Calcule el potencial vector A en un punto arbitrario del espacio.
+
+b) Determine el campo B en un punto arbitrario del espacio.
+Problema 6: Considere una c´ascara esf´erica de radio R. Suponga que en el interior de la c´ascara existe un campo B
+de la forma
+Bx = 2 Q x,
+By = 2 Q y,
+Bz = −4 Q z,
+(2)
+donde Q es una constante y (x, y, z) son coordenadas Cartesianas centradas en el origen de la c´ascara esf´erica.
+a) Muestre que el campo magn´etico satisface las ecuaciones de Maxwell en el interior de la c´ascara. Encuentre el
+potencial magn´etico Φ tal que B = −µ0 ∇Φ.
+b) Calcule el campo de inducci´on magn´etica Bext para un punto arbitrario en el exterior de la esfera.
+c) Encuentre la distribuci´on de corriente en la c´ascara que produce el campos magn´etico de este problema.
+Problema 7: Considere una c´ascara esf´erica de radio interior a y radio exterior b de permeabilidad magn´etica µ
+inmersa en un campo constante y uniforme de magnitud Bo. Determine el campo de inducci´on magn´etica B para un
+punto arbitrario del espacio. Analice el caso µ ≫µo. (Ver secci´on 5.12 del libro de Jackson).
+Problema 8: Un im´an permanente de forma cil´ındrica,de longitud L y radio a tiene una magnetizaci´on M constante
+y uniforme paralela al eje del im´an.
+a) Determine el campo magn´etico H
+b) Calcule el campo de inducci´on magn´etica B
+c) Discuta el comportamiento de las l´ıneas de estos campos.
+Problema 9: Considere una bola de radio R, centrada en el origen de un sistema de coordenadas, que tiene magne-
+tizaci´on M dada por:
+M = M0
+r
+R sin θ cos φ ˆr,
+r ≤R.
+a) Calcule los campos H y B en un punto arbitrario del espacio.
+b) Dibuje cualitativamente las l´ıneas de H y B.
+A una distancia d = 10R del centro de la esfera se ubica una espira circular de ´area A por la que circula una corriente
+I.
+c) Calcule la energ´ıa de interacci´on magn´etica entre la espira y la bola suponiendo que la normal a la espira es ˆy.
+d) Calcule la energ´ıa de interacci´on magn´etica entre la espira y la bola considerando que la normal a la espira es
+ˆr(θ, φ) con θ = π/4 y φ = 0.
+Problema 10: Considere un campo magn´etico est´atico producido completamente por una distribuci´on localizada de
+magnetizaci´on permanente M.
+a) Demostrar que
+Z
+B · H dV = 0
+(3)
+donde la integral es tomada en todo el espacio.
+b) A partir de la expresi´on para la energ´ıa potencial de un dipolo en un campo externo, demuestre que para una
+distribuci´on continua de magnetizaci´on permanente el energ´ıa magnetost´atica puede ser escrita como
+W = µ0
+2
+Z
+H · H dV = −µ0
+2
+Z
+M · H dV,
+(4)
+a menos de una constante aditiva, la cual es independiente de la orientaci´on o la posici´on de los cuerpos
+magn´eticos.
+2
