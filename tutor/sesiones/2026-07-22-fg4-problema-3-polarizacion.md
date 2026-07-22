@@ -1,372 +1,301 @@
-# FG4 2020 — Problema 3 — ZERO TO HERO (completo desde cero)
-
-Material: `tutor/inbox/FG4-2020-problema-3.md` (captura del enunciado).
+# FG4 2020 — Problema 3: qué dice la consigna + desarrollo completo
 
 ---
 
-## 0. Desde cero del tema
+# PARTE A — Qué dice la consigna (frase por frase)
 
-### ¿Qué es la luz para este problema?
+## Escenario inicial
 
-Para polarización tratamos la luz como una **onda electromagnética**. Lo que “vibra” y detectamos con polarizadores es el **campo eléctrico \(\mathbf{E}\)**.
+> *“Un haz de luz linealmente polarizada se propaga en la dirección \(z\).”*
 
-La onda se propaga en \(+z\). Entonces \(\mathbf{E}\) está en el plano \(xy\) (transversal a la propagación).
+- Hay un rayo de luz que viaja hacia adelante en el eje \(z\).
+- **Linealmente polarizada** = el campo eléctrico \(\mathbf{E}\) vibra siempre sobre **una sola recta** (no da vueltas en círculo ni elipse).
 
-### ¿Qué significa “linealmente polarizada”?
+> *“El vector campo eléctrico vibra en el primer cuadrante del plano \(xy\).”*
 
-Significa que \(\mathbf{E}\) oscila **siempre sobre una misma recta** fija en el plano \(xy\).
+- Como la luz va en \(z\), \(\mathbf{E}\) está en el plano \(xy\).
+- **Primer cuadrante** = la recta de vibración está entre el eje \(+x\) y el eje \(+y\).
+- Llamamos \(\alpha\) al ángulo entre esa recta y el eje \(x\). Entonces \(0^\circ < \alpha < 90^\circ\).
 
-Esa recta forma un ángulo \(\alpha\) con el eje \(x\). Como el enunciado dice **primer cuadrante**, tenemos
+## Mediciones con el analizador
 
-\[
-0 < \alpha < 90^\circ.
-\]
+Un **analizador** es un polarizador lineal que podés rotar. Solo deja pasar la parte de \(\mathbf{E}\) alineada con su eje.
 
-Si la amplitud del campo es \(E_0\), podemos escribir:
+> *“Si el eje de transmisión del analizador está en la dirección \(y\), la intensidad transmitida es \(I_0\).”*
 
-\[
-\mathbf{E}
-=
-E_0\cos(kz-\omega t)
-\bigl(\cos\alpha\,\hat{\mathbf{x}}+\sin\alpha\,\hat{\mathbf{y}}\bigr).
-\]
+- Ponés el analizador vertical (eje en \(y\)).
+- Sale intensidad \(I_0\).
 
-### ¿Qué es un polarizador / analizador lineal?
+> *“Si el eje de transmisión está en la dirección \(x\), la intensidad transmitida es \(3I_0\).”*
 
-Es un filtro que **solo deja pasar** la componente de \(\mathbf{E}\) paralela a su **eje de transmisión**.
+- Ponés el analizador horizontal (eje en \(x\)).
+- Sale intensidad \(3I_0\) (tres veces más que antes).
 
-Si el eje del analizador forma un ángulo \(\theta\) con \(x\), la dirección permitida es
+Eso ya te dice algo: hay **más** componente de \(\mathbf{E}\) en \(x\) que en \(y\), así que \(\alpha\) está más cerca de \(x\) que de \(y\) (menor que \(45^\circ\)).
 
-\[
-\hat{\mathbf{e}}_\theta=\cos\theta\,\hat{\mathbf{x}}+\sin\theta\,\hat{\mathbf{y}}.
-\]
+## Qué te piden (a) y (b)
 
-La componente transmitida del campo es la proyección:
+> **(a)** Determinar la intensidad del haz incidente en función de \(I_0\) y del ángulo \(\alpha\) que forma el plano de polarización original con el eje \(x\).
 
-\[
-E_{\text{tx}}
-=
-\mathbf{E}\cdot\hat{\mathbf{e}}_\theta
-=
-E_0\cos(kz-\omega t)\cos(\alpha-\theta).
-\]
+- “Haz incidente” = la luz **antes** de pasar por el analizador. Intensidad: \(I_i\).
+- Pedís \(I_i\) relacionada con \(I_0\) y \(\alpha\). Con los dos datos también se fijan los valores numéricos de \(I_i\) y \(\alpha\).
 
-### Intensidad
+> **(b)** Determinar la intensidad medida cuando el eje del analizador forma \(\theta = 60^\circ\) con el eje \(x\).
 
-La intensidad \(I\) es proporcional al promedio temporal de \(|\mathbf{E}|^2\). Por eso, si la intensidad incidente (antes del analizador) es \(I_i\), la transmitida cumple la **ley de Malus**:
+- Girás el analizador a \(60^\circ\) respecto de \(x\) y calculás qué intensidad sale.
 
-\[
-\boxed{I=I_i\cos^2(\alpha-\theta)}
-\]
+## Segunda parte: lámina \(\lambda/2\)
 
-dónde \(\alpha-\theta\) es el ángulo entre la polarización de la luz y el eje del analizador.
+> *“El haz original atraviesa una lámina de media onda (\(\lambda/2\)) y luego el analizador lineal. El eje óptico de la lámina forma \(\beta = 45^\circ\) con el eje \(x\).”*
 
-**De dónde sale el cos²:** el campo se multiplica por \(\cos\delta\); la intensidad va como el cuadrado del campo ⇒ \(\cos^2\delta\).
+- Ahora, **antes** del analizador, interponés una lámina de media onda.
+- Su eje óptico está a \(45^\circ\) respecto de \(x\).
+- Esa lámina **cambia la orientación** del plano de polarización (pero sigue siendo luz lineal).
 
-### ¿Qué es una lámina de media onda (\(\lambda/2\))?
+> **(c)** Determinar el tipo de polarización a la salida de la lámina y describir la orientación del plano de polarización.
 
-Es una placa birrefringente con dos ejes perpendiculares (eje rápido / eje lento, o “eje óptico” y su perpendicular).
+- ¿Sigue lineal? ¿circular? ¿elíptica?
+- ¿A qué ángulo queda el plano?
 
-Introduce una diferencia de camino óptico de \(\lambda/2\) entre esas dos componentes ⇒ **desfase de \(\pi\)** (media vuelta).
+> **(d)** Determinar la nueva intensidad transmitida cuando el analizador otra vez está a \(\theta = 60^\circ\) con \(x\).
 
-Efecto sobre luz **linealmente polarizada**:
-- sigue siendo **linealmente polarizada**;
-- el plano de polarización queda **reflejado** respecto del eje óptico de la lámina.
-
-Si el eje óptico está a ángulo \(\beta\) respecto de \(x\), y la polarización de entrada está a \(\alpha\), la de salida queda a
-
-\[
-\boxed{\alpha'=2\beta-\alpha}
-\]
-
-(es la reflexión especular del ángulo \(\alpha\) alrededor de la recta a ángulo \(\beta\)).
-
-¿Por qué es una reflexión? Porque un desfase \(\pi\) en la componente perpendicular al eje óptico **cambia el signo** de esa componente, y cambiar el signo de la componente perpendicular es exactamente reflejar el vector \(\mathbf{E}\) respecto del eje óptico.
+- Misma posición del analizador que en (b), pero ahora la luz ya pasó por la lámina. La intensidad puede cambiar.
 
 ---
 
-## 1. Qué pide
+# PARTE B — Desarrollo completo ZERO TO HERO
 
-Tenemos luz linealmente polarizada (ángulo \(\alpha\) desconocido a priori) y mediciones con un analizador.
+## 0. Herramientas (solo las necesarias)
 
-- **(a)** Intensidad incidente \(I_i\) en términos de \(I_0\) y \(\alpha\) (y, con los datos, fijar sus valores).
-- **(b)** Intensidad con analizador a \(\theta=60^\circ\).
-- Después: pasa por lámina \(\lambda/2\) con eje a \(\beta=45^\circ\).
-- **(c)** Tipo y orientación de la polarización a la salida de la lámina.
-- **(d)** Intensidad con analizador otra vez a \(\theta=60^\circ\).
+### Intensidad después de un analizador (ley de Malus)
+
+Si la luz llega con intensidad \(I_i\), polarizada a ángulo \(\alpha\) respecto de \(x\), y el analizador está a ángulo \(\theta\) respecto de \(x\), el ángulo entre ambos es \(\alpha-\theta\). El campo se proyecta con un \(\cos\); la intensidad lleva el cuadrado:
+
+\[
+\boxed{I = I_i \cos^2(\alpha - \theta)}
+\]
+
+### Lámina de media onda
+
+Introduce un desfase de \(\pi\) entre el eje óptico y su perpendicular.  
+Para luz **lineal** de entrada: la salida **sigue lineal**, y el plano queda **reflejado** respecto del eje óptico:
+
+\[
+\boxed{\alpha' = 2\beta - \alpha}
+\]
+
+donde \(\beta\) es el ángulo del eje óptico.
+
+---
+
+## 1. Qué hay que encontrar (lista limpia)
+
+| Ítem | Pedido |
+|------|--------|
+| (a) | \(I_i\) y \(\alpha\) |
+| (b) | \(I\) con \(\theta=60^\circ\) (sin lámina) |
+| (c) | tipo + orientación después de \(\lambda/2\) |
+| (d) | \(I\) con \(\theta=60^\circ\) (con lámina) |
 
 ---
 
 ## 2. Idea central
 
-1. Cada medición con el analizador es una proyección ⇒ Malus.
-2. Con las dos mediciones (\(x\) e \(y\)) fijamos \(I_i\) y \(\alpha\).
-3. La lámina \(\lambda/2\) **no cambia** “lineal → lineal”; solo **rota** el plano por reflexión respecto de su eje.
-4. Volvemos a aplicar Malus con el nuevo ángulo.
+1. Cada medición = proyección ⇒ Malus.  
+2. Con \(I_x\) e \(I_y\) sacamos \(I_i\) y \(\alpha\).  
+3. \(\lambda/2\) refleja el plano: \(\alpha \to \alpha'\).  
+4. Malus otra vez con \(\alpha'\).
 
 ---
 
-## 3. Herramientas previas
+## 3. Setup
 
-| Herramienta | Qué es | Para qué |
-|-------------|--------|----------|
-| Polarización lineal | \(\mathbf{E}\) vibra en una sola dirección | modelo del haz |
-| Analizador | deja pasar solo una proyección | mide componentes |
-| Ley de Malus | \(I=I_i\cos^2\delta\) | ítems a, b, d |
-| Lámina \(\lambda/2\) | desfase \(\pi\) ⇒ refleja el plano de polarización | ítems c, d |
+- \(I_i\): intensidad incidente (desconocida al inicio).  
+- \(\alpha\): ángulo de polarización original con \(x\) (desconocido).  
+- Datos: \(I(\theta=0^\circ)=3I_0\), \(I(\theta=90^\circ)=I_0\).  
+- Luego: \(\beta=45^\circ\), \(\theta=60^\circ\).
 
 ---
 
-## 4. Setup
+## 4. Pasos
 
-| Símbolo | Significado |
-|--------|-------------|
-| \(I_i\) | intensidad del haz **incidente** (antes del analizador / lámina) |
-| \(I_0\) | dato del enunciado (una intensidad de referencia) |
-| \(\alpha\) | ángulo del plano de polarización **original** con el eje \(x\) |
-| \(\theta\) | ángulo del eje del **analizador** con \(x\) |
-| \(\beta=45^\circ\) | ángulo del eje óptico de la lámina \(\lambda/2\) con \(x\) |
-| \(\alpha'\) | ángulo de polarización **después** de la lámina |
-
-**Datos:**
-
-- Analizador en \(y\) (\(\theta=90^\circ\)): \(I=I_0\)
-- Analizador en \(x\) (\(\theta=0^\circ\)): \(I=3I_0\)
-- Primer cuadrante: \(\alpha\in(0,\pi/2)\)
-
-**Diagrama mental (antes de la lámina):**
-
-```
-        y
-        ^
-        |   E (polarización a ángulo α)
-        |  /
-        | /
-        |/____\ α
-        +--------> x
-```
+1. Malus en \(x\) y en \(y\).  
+2. Resolver \(I_i\) y \(\alpha\).  
+3. Malus a \(60^\circ\).  
+4. Reflejar con \(\lambda/2\).  
+5. Malus a \(60^\circ\) otra vez.
 
 ---
 
-## 5. Pasos numerados
+## 5. Desarrollo
 
-1. Escribir Malus para analizador en \(x\) y en \(y\).
-2. Resolver \(I_i\) y \(\alpha\).
-3. Aplicar Malus con \(\theta=60^\circ\).
-4. Reflejar el ángulo con la lámina \(\lambda/2\) (\(\beta=45^\circ\)).
-5. Aplicar Malus otra vez con \(\theta=60^\circ\).
+### Paso 1 — Escribir las dos mediciones
 
----
-
-## 6. Desarrollo completo
-
-### Paso 1 — Las dos mediciones
-
-Ley de Malus: \(I=I_i\cos^2(\alpha-\theta)\).
-
-**Analizador en \(x\):** \(\theta=0^\circ\)
+**Analizador en \(x\)** (\(\theta = 0^\circ\)):
 
 \[
-I_x=I_i\cos^2\alpha=3I_0.
-\qquad (1)
+I_i \cos^2\alpha = 3I_0 \tag{1}
 \]
 
-**Analizador en \(y\):** \(\theta=90^\circ\)
+**Analizador en \(y\)** (\(\theta = 90^\circ\)):
 
 \[
-\cos(\alpha-90^\circ)=\sin\alpha,
-\]
-
-\[
-I_y=I_i\sin^2\alpha=I_0.
-\qquad (2)
-\]
-
-### Paso 2 — Ítem (a): \(I_i\) y \(\alpha\)
-
-**Forma pedida “en función de \(I_0\) y \(\alpha\)”:**
-
-De (1):
-
-\[
-I_i=\frac{3I_0}{\cos^2\alpha}.
-\]
-
-De (2):
-
-\[
-I_i=\frac{I_0}{\sin^2\alpha}.
-\]
-
-Las dos deben coincidir. Dividiendo (2)/(1):
-
-\[
-\frac{\sin^2\alpha}{\cos^2\alpha}=\tan^2\alpha=\frac{I_0}{3I_0}=\frac13.
-\]
-
-\[
-\tan\alpha=\frac{1}{\sqrt{3}}
+\cos(\alpha - 90^\circ) = \sin\alpha
 \quad\Rightarrow\quad
-\alpha=30^\circ
+I_i \sin^2\alpha = I_0 \tag{2}
 \]
 
-(positivo, primer cuadrante: descartamos \(210^\circ\), etc.).
+### Paso 2 — Ítem (a)
 
-Ahora, sumando (1)+(2):
+Forma pedida “en función de \(I_0\) y \(\alpha\)”:
 
 \[
-I_i(\cos^2\alpha+\sin^2\alpha)=3I_0+I_0
+I_i = \frac{3I_0}{\cos^2\alpha}
+\qquad\text{o}\qquad
+I_i = \frac{I_0}{\sin^2\alpha}.
+\]
+
+Igualamos (dividiendo (2)÷(1)):
+
+\[
+\frac{\sin^2\alpha}{\cos^2\alpha} = \tan^2\alpha = \frac{I_0}{3I_0} = \frac{1}{3}.
+\]
+
+\[
+\tan\alpha = \frac{1}{\sqrt{3}}
 \quad\Rightarrow\quad
-I_i=4I_0.
+\alpha = 30^\circ
 \]
 
-Chequeo con \(\alpha=30^\circ\):
+(primer cuadrante ⇒ tomamos \(30^\circ\), no \(210^\circ\)).
+
+Sumando (1)+(2):
 
 \[
-\cos 30^\circ=\sqrt{3}/2,\quad\cos^2=3/4,
-\quad
-I_i\cdot\frac34=4I_0\cdot\frac34=3I_0.
+I_i(\cos^2\alpha + \sin^2\alpha) = 3I_0 + I_0 = 4I_0
+\quad\Rightarrow\quad
+I_i = 4I_0.
+\]
+
+**Verificación:**
+
+\[
+\cos 30^\circ = \frac{\sqrt{3}}{2},\quad \cos^2 30^\circ = \frac{3}{4},
+\quad 4I_0 \cdot \frac{3}{4} = 3I_0. \checkmark
 \]
 
 \[
-\sin 30^\circ=1/2,\quad\sin^2=1/4,
-\quad
-4I_0\cdot\frac14=I_0.
+\sin 30^\circ = \frac{1}{2},\quad \sin^2 30^\circ = \frac{1}{4},
+\quad 4I_0 \cdot \frac{1}{4} = I_0. \checkmark
 \]
 
-Perfecto.
-
-**Respuesta (a):**
+**Resultado (a):**
 
 \[
-\boxed{I_i=4I_0,\qquad \alpha=30^\circ}
+\boxed{I_i = 4I_0, \qquad \alpha = 30^\circ}
 \]
 
-(y en la forma funcional: \(I_i=3I_0/\cos^2\alpha=I_0/\sin^2\alpha\)).
+### Paso 3 — Ítem (b)
 
-### Paso 3 — Ítem (b): analizador a \(\theta=60^\circ\)
+Sin lámina, analizador a \(\theta = 60^\circ\):
 
 \[
+\begin{aligned}
 I(60^\circ)
-=
-I_i\cos^2(\alpha-60^\circ)
-=
-4I_0\cos^2(30^\circ-60^\circ)
-=
-4I_0\cos^2(-30^\circ)
-=
-4I_0\cos^2 30^\circ
-=
-4I_0\cdot\frac34
-=
-3I_0.
+&= I_i \cos^2(\alpha - 60^\circ) \\
+&= 4I_0 \cos^2(30^\circ - 60^\circ) \\
+&= 4I_0 \cos^2(-30^\circ) \\
+&= 4I_0 \cos^2 30^\circ \\
+&= 4I_0 \cdot \frac{3}{4} \\
+&= 3I_0.
+\end{aligned}
 \]
 
-**Respuesta (b):**
+**Resultado (b):**
 
 \[
-\boxed{I(60^\circ)=3I_0}
+\boxed{I(60^\circ) = 3I_0}
 \]
 
 ### Paso 4 — Ítem (c): después de la lámina \(\lambda/2\)
 
-Eje óptico a \(\beta=45^\circ\). Polarización de entrada a \(\alpha=30^\circ\).
+Eje óptico a \(\beta = 45^\circ\). Polarización de entrada \(\alpha = 30^\circ\).
 
-La lámina de media onda **refleja** el plano de polarización respecto de su eje:
+La media onda **refleja** el plano respecto de ese eje:
 
 \[
-\alpha'=2\beta-\alpha=2\cdot 45^\circ-30^\circ=90^\circ-30^\circ=60^\circ.
+\alpha' = 2\beta - \alpha = 2\cdot 45^\circ - 30^\circ = 60^\circ.
 \]
 
-Como la entrada era lineal, la salida **sigue siendo lineal** (solo giró el plano).
+Como la entrada era lineal y el desfase es \(\pi\) (no \(\pi/2\)), la salida **sigue siendo lineal**.
 
-**Respuesta (c):**
+**Por qué \(2\beta-\alpha\):** el eje a \(45^\circ\) es el “espejo”. El ángulo de entrada está \(15^\circ\) por debajo de \(45^\circ\) (\(45-30=15\)); la imagen está \(15^\circ\) por encima: \(45+15=60\).
+
+**Resultado (c):**
 
 \[
-\boxed{
-\text{Polarización lineal, con plano a }\alpha'=60^\circ\text{ respecto del eje }x.
-}
+\boxed{\text{Polarización lineal, plano a } 60^\circ \text{ respecto del eje } x.}
 \]
 
-(Es decir: el vector \(\mathbf{E}\) vibra sobre la recta que forma \(60^\circ\) con \(x\), aún en el primer cuadrante.)
+### Paso 5 — Ítem (d)
 
-**Mini-imagen:**
-
-```
-eje óptico de la lámina a 45°
-entrada α = 30°   →   se refleja   →   salida α' = 60°
-(simétricos respecto de la recta a 45°)
-```
-
-### Paso 5 — Ítem (d): otra vez analizador a \(60^\circ\)
-
-Ahora, **antes** del analizador, la luz ya está polarizada a \(\alpha'=60^\circ\).  
-El analizador está a \(\theta=60^\circ\).
+Ahora la luz que llega al analizador está polarizada a \(\alpha' = 60^\circ\).  
+El analizador está a \(\theta = 60^\circ\):
 
 \[
-I'
-=
-I_i\cos^2(\alpha'-\theta)
-=
-4I_0\cos^2(60^\circ-60^\circ)
-=
-4I_0\cos^2 0
-=
-4I_0.
+I' = I_i \cos^2(\alpha' - \theta) = 4I_0 \cos^2(60^\circ - 60^\circ) = 4I_0 \cos^2 0 = 4I_0.
 \]
 
-Interpretación: el analizador está **alineado** con la polarización ⇒ transmite todo (en el modelo ideal).
+Interpretación: analizador **alineado** con \(\mathbf{E}\) ⇒ (idealmente) pasa toda la intensidad.
 
-**Respuesta (d):**
+**Resultado (d):**
 
 \[
-\boxed{I'=4I_0}
+\boxed{I' = 4I_0}
 \]
 
 ---
 
-## 7. Resultado final (junto)
+## 6. Resultado final (todo junto)
 
-| Ítem | Resultado |
+| Ítem | Respuesta |
 |------|-----------|
-| (a) | \(I_i=4I_0\), \(\alpha=30^\circ\) |
-| (b) | \(I(60^\circ)=3I_0\) |
-| (c) | Lineal, plano a \(60^\circ\) con \(x\) |
-| (d) | \(I'=4I_0\) |
+| **(a)** | \(I_i = 4I_0\), \(\alpha = 30^\circ\) |
+| **(b)** | \(3I_0\) |
+| **(c)** | Lineal, a \(60^\circ\) con \(x\) |
+| **(d)** | \(4I_0\) |
 
 ---
 
-## 8. Chequeos
+## 7. Chequeos
 
-1. \(I_x+I_y=3I_0+I_0=4I_0=I_i\): para polarización lineal, las intensidades en dos ejes ortogonales suman la intensidad total. OK.
-2. \(\alpha=30^\circ\) está en el primer cuadrante. OK.
-3. Sin lámina, a \(60^\circ\) dio \(3I_0\); con lámina alineó a \(60^\circ\) y pasó a \(4I_0 > 3I_0\): coherente (la lámina reorientó el campo a favor del analizador).
-4. Lámina \(\lambda/2\) **no** crea elipse: desfase \(\pi\) mantiene linealidad. OK.
-
----
-
-## 9. Errores típicos de examen
-
-- Usar \(\cos\) en vez de \(\cos^2\) (olvidar que intensidad ∝ campo²).
-- Confundir el ángulo: poner \(\cos(\alpha+\theta)\) o mezclar \(\alpha\) con \(\theta\).
-- Para analizador en \(y\), olvidar que \(\cos(\alpha-90^\circ)=\sin\alpha\).
-- Creer que la lámina \(\lambda/2\) produce polarización circular (eso es, en el caso típico de entrada a \(45^\circ\) respecto del eje, una lámina **cuarto de onda** \(\lambda/4\)).
-- Usar \(\alpha'=\beta-\alpha\) en vez de \(2\beta-\alpha\).
-- En (d), usar todavía \(\alpha=30^\circ\) en vez de \(\alpha'=60^\circ\).
+1. \(I_x + I_y = 3I_0 + I_0 = 4I_0 = I_i\): en polarización lineal, dos ejes ortogonales recuperan toda la intensidad.  
+2. \(\alpha = 30^\circ < 45^\circ\): coherente con \(I_x > I_y\).  
+3. Con la lámina, a \(60^\circ\) la intensidad **sube** de \(3I_0\) a \(4I_0\): la lámina alineó el campo con el analizador.  
+4. \(\lambda/2\) no produce circular: eso sería típico de \(\lambda/4\) con entrada a \(45^\circ\) del eje.
 
 ---
 
-## 10. Mini-resumen
+## 8. Errores típicos
 
-> Malus: \(I=I_i\cos^2(\alpha-\theta)\).  
-> Datos \(I_x=3I_0\), \(I_y=I_0\) ⇒ \(I_i=4I_0\), \(\alpha=30^\circ\).  
-> Sin lámina, \(\theta=60^\circ\) ⇒ \(3I_0\).  
-> \(\lambda/2\) con eje a \(45^\circ\) refleja: \(\alpha'=60^\circ\) (sigue lineal).  
-> Analizador a \(60^\circ\) ⇒ transmite todo: \(4I_0\).
+- Usar \(\cos\) en vez de \(\cos^2\).  
+- En \(y\), olvidar que el factor es \(\sin\alpha\).  
+- Confundir \(\lambda/2\) con \(\lambda/4\).  
+- Usar \(\alpha' = \beta - \alpha\) en vez de \(2\beta - \alpha\).  
+- En (d), seguir usando \(\alpha = 30^\circ\) en vez de \(\alpha' = 60^\circ\).
+
+---
+
+## 9. Mini-resumen
+
+> Consigna: luz lineal a ángulo \(\alpha\); medís \(I_x=3I_0\), \(I_y=I_0\); después \(\lambda/2\) a \(45^\circ\) y otra vez el analizador a \(60^\circ\).  
+> Malus ⇒ \(I_i=4I_0\), \(\alpha=30^\circ\).  
+> Sin lámina a \(60^\circ\) ⇒ \(3I_0\).  
+> \(\lambda/2\) refleja ⇒ lineal a \(60^\circ\).  
+> Analizador a \(60^\circ\) ⇒ \(4I_0\).
 
 ---
 
 ## Siguiente paso lógico
 
-1. Variante: ¿qué pasaría si fuera lámina \(\lambda/4\) (cuarto de onda) con el mismo eje a \(45^\circ\)?
-2. Seguir con el **Problema 4** de la misma hoja (interferencia + difracción, doble rendija).
+¿Seguimos con el **Problema 4** de la misma hoja (doble rendija + difracción), o querés que baje un nivel más en Malus / lámina \(\lambda/2\) con un ejemplo numérico chico?
