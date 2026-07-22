@@ -2,19 +2,18 @@
 
 ## 1. Material
 
-Guía 7 EMI — Magnetostática (`tutor/inbox/Guia_7_EMI.pdf`)
+Captura FG4 2020 FAMAF — Problemas 3 y 4 (`tutor/inbox/FG4-2020-problema-3.md`)
 
 ## 2. Qué quiero
 
-- [x] Resolver ejercicio N° **5** ítems **a y b**
-- Pedido: **ZERO TO HERO completo** (sin vaguedades, desde cero)
+- [x] Resolver **Problema 3** (marcado) ítems a–d
+- Pedido: **ZERO TO HERO completo** desde cero
 
 ## 3. Contexto
 
-- Nivel: facultad (Electromagnetismo I)
-- Qué ya sé: poco del tema; explicar todo desde cero
-- Materia: Magnetostática
+- Nivel: facultad (Física General IV — óptica)
+- Explicar polarización / Malus / lámina λ/2 desde cero
 
 ## 4. Pedido concreto
 
-> zero to hero — problema 5, desarrollo completo paso a paso
+> ahora hagamos este paso a paso desde cero (Problema 3 de la foto)
