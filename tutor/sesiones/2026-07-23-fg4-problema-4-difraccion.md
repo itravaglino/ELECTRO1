@@ -206,6 +206,141 @@ D = 1\,\mathrm{m}
 
 ---
 
+## Paso 0 — De dónde sale \(N = 2m_*-1\) (contar franjas)
+
+Esta es la parte que más confunde. No es una fórmula mágica: es **contar** máximos de interferencia que quedan **adentro** del lóbulo central.
+
+### Recordatorio de posiciones
+
+Máximos de interferencia (brillantes), orden entero \(m\):
+
+\[
+\sin\theta_m = \frac{m\lambda}{d}
+\quad\Leftrightarrow\quad
+y_m = m\,\Delta y,\qquad \Delta y=\frac{\lambda D}{d}.
+\]
+
+Primer mínimo de difracción (borde del lóbulo), a derecha e izquierda:
+
+\[
+\sin\theta_{\mathrm{borde}} = \pm\frac{\lambda}{a}
+\quad\Leftrightarrow\quad
+y_{\mathrm{borde}} = \pm\frac{\lambda D}{a}.
+\]
+
+### Idea: el borde “cae” sobre un máximo
+
+Suponemos (caso típico del enunciado) que el borde derecho del lóbulo coincide con el máximo de interferencia de orden \(m_*\):
+
+\[
+\frac{m_*\lambda}{d} = \frac{\lambda}{a}
+\quad\Rightarrow\quad
+m_* = \frac{d}{a}.
+\]
+
+(Entonces \(m_*\) es un número entero positivo: 2, 3, 4, 5, 6, …)
+
+Igual a la izquierda con \(-m_*\).
+
+### ¿Ese máximo \(m_*\) se ve?
+
+No. Justo ahí la envolvente de difracción vale **cero**.  
+Aunque la interferencia “querría” un máximo en \(m_*\), la difracción lo apaga.  
+Lo mismo con \(-m_*\).
+
+Por eso \(m = \pm m_*\) **no cuentan** como franjas visibles.
+
+### ¿Cuáles sí se ven?
+
+Todos los máximos **estrictamente adentro** del intervalo
+
+\[
+-y_{\mathrm{borde}} < y < +y_{\mathrm{borde}},
+\]
+
+o sea órdenes
+
+\[
+m = 0,\ \pm 1,\ \pm 2,\ \ldots,\ \pm(m_*-1).
+\]
+
+Lista explícita:
+
+- el centro: \(m=0\) → **1** franja  
+- a la derecha: \(m=+1,+2,\ldots,+(m_*-1)\) → **\(m_*-1\)** franjas  
+- a la izquierda: \(m=-1,-2,\ldots,-(m_*-1)\) → **\(m_*-1\)** franjas  
+
+Total:
+
+\[
+N = 1 + (m_*-1) + (m_*-1) = 1 + 2(m_*-1) = 2m_* - 1.
+\]
+
+Esa es la fórmula:
+
+\[
+\boxed{N = 2m_* - 1}
+\]
+
+con \(m_* = d/a\) (entero).
+
+### Ejemplo chico (para sentir el conteo)
+
+Supongamos \(m_*=3\) (o sea \(d=3a\)).
+
+Órdenes:
+
+| \(m\) | ¿Adentro del lóbulo? | ¿Se ve? |
+|------|----------------------|---------|
+| 0 | sí | sí |
+| ±1 | sí | sí |
+| ±2 | sí | sí |
+| ±3 | justo en el borde (cero de difracción) | **no** |
+
+Franjas visibles: \(0,\pm1,\pm2\) → son **5**.  
+Y \(2\cdot 3 - 1 = 5\). Coincide.
+
+### Otro ejemplo: el del problema (\(N=11\))
+
+\[
+2m_*-1 = 11 \Rightarrow m_*=6.
+\]
+
+Visibles: \(0,\pm1,\pm2,\pm3,\pm4,\pm5\) → contá:
+
+\[
+1 + 5 + 5 = 11.
+\]
+
+No visibles: \(\pm 6\) (en el cero).  
+Y \(2\cdot 6 - 1 = 11\). OK.
+
+### Dibujo mental del conteo
+
+```
+borde izq (m=-m_*)     centro      borde der (m=+m_*)
+   |--- visibles ---|----|--------|--- visibles ---|
+   X  ...(m*-1)...  0  ...(m*-1)...  X
+   ^ no se ve                         ^ no se ve
+```
+
+Cantidad visible = todos los enteros desde \(-(m_*-1)\) hasta \(+(m_*-1)\) inclusive  
+= \(2(m_*-1)+1 = 2m_*-1\).
+
+### Por qué no es \(N=2m_*\) ni \(N=2d/a\)
+
+- Si contaras también \(\pm m_*\), saldría \(2m_*+1\), pero esos **no brillan**.
+- A veces se escribe \(N=2d/a - 1\). Es lo mismo, porque \(m_*=d/a\):
+  \[
+  N = 2\frac{d}{a} - 1.
+  \]
+
+### Resumen en una frase
+
+> El lóbulo llega hasta el orden \(m_*=d/a\); ese orden se apaga; quedan los enteros de \(-(m_*-1)\) a \(+(m_*-1)\); eso son \(2m_*-1\) franjas.
+
+---
+
 ## Paso 1 — Relacionar “11 franjas” con \(d\) (ítem b)
 
 Queremos que el **primer mínimo de difracción** coincida con un **máximo de interferencia** de orden \(m_*\).
