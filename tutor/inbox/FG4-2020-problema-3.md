@@ -1,6 +1,6 @@
 # Física General IV — FAMAF UNC 2020 (captura)
 
-Fuente: foto del enunciado (Problemas 3 y 4). Pedido del alumno: **Problema 3**, zero to hero desde cero.
+Fuente: foto del enunciado (Problemas 3 y 4).
 
 ## Problema 3 (texto)
 
@@ -19,3 +19,15 @@ El haz original atraviesa una lámina de media onda (\(\lambda/2\)) y luego el a
 (c) Tipo de polarización a la salida de la lámina y orientación del plano de polarización.
 
 (d) Nueva intensidad transmitida con el analizador a \(\theta=60^\circ\) respecto de \(x\).
+
+## Problema 4 (texto)
+
+Configuración de **dos rendijas**, cada una de ancho \(0{,}020\,\mathrm{mm}\), iluminadas por ondas planas de luz amarilla de sodio (\(\lambda = 589{,}6\,\mathrm{nm}\)).
+
+El patrón de Fraunhofer resultante consiste en **11 franjas brillantes estrechas** dentro del **primer máximo de difracción**, cuya irradiancia disminuye gradualmente al alejarse del máximo central.
+
+(a) Dibujar esquemáticamente el patrón formado en una pantalla ubicada a un metro de las rendijas.
+
+(b) Estimar la separación entre las rendijas.
+
+(c) Calcular la intensidad del máximo correspondiente al orden \(m=3\) relativa al máximo central.
