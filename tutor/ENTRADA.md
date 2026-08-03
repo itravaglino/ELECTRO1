@@ -2,20 +2,21 @@
 
 ## 1. Material
 
-`Guia_7_EMI (1).pdf` — Electromagnetismo I 2026 — Magnetostática  
+`Guia_7_EMI (1).pdf` — Magnetostática  
 Mapa: `tutor/sesiones/2026-08-03-guia7-mapa.md`
 
 ## 2. Qué quiero
 
-- [x] Mapeo de la Guía 7 (obligatorio / importante / si sobra + camino)
-- [ ] Resolver ejercicios del camino corto ZERO TO HERO (empezar cuando el alumno elija número)
+- [x] Mapeo Guía 7
+- [x] Problema 1 ZERO TO HERO (`2026-08-03-guia7-problema-1.md`)
+- [ ] Problema 2 (siguiente del camino corto)
 
 ## 3. Contexto
 
-- Nivel: facultad (EMI / FAMAF)
-- Ya hecho: Problema 5 (cascarón esférico rotante)
+- Camino: 1 → 2 → 4 → 5 → 8 → …
+- Hechos: 1 y 5
 - Notación Jackson: \(r\), \(\rho=\sqrt{x^2+y^2}\)
 
 ## 4. Pedido concreto
 
-> Guia_7_EMI (1).pdf hagamos lo mismo q con las otras guiias pero con estas
+> vamos con el primero del camino corto
