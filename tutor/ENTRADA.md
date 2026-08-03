@@ -2,23 +2,21 @@
 
 ## 1. Material
 
-`Guia_7_EMI (1).pdf` — Magnetostática  
-Mapa: `tutor/sesiones/2026-08-03-guia7-mapa.md`
+Ultra-resumen Guías 4–7 (mini break)
 
 ## 2. Qué quiero
 
-- [x] Mapeo Guía 7
-- [x] Problema 1 ZERO TO HERO
-- [x] Problema 2 ZERO TO HERO (desde absolutamente cero)
-- [x] Problema 4 ZERO TO HERO (desde absolutamente cero)
-- [ ] Problema 8 (siguiente del camino corto; el 5 ya está)
+- [x] PDF LaTeX ZERO TO HERO con ultra-resumen de Guías 4, 5, 6, 7 para tener al lado en el final
+
+Archivos:
+- `tutor/resumenes/ultra-resumen-guias-4-7-z2h.tex`
+- `tutor/resumenes/ultra-resumen-guias-4-7-z2h.pdf`
+- Artifact: `/opt/cursor/artifacts/ultra-resumen-guias-4-7-z2h.pdf`
 
 ## 3. Contexto
 
-- Camino: 1 → 2 → 4 → 5 → 8 → …
-- Hechos: 1, 2, 4, 5
-- Notación Jackson: \(r\), \(\rho=\sqrt{x^2+y^2}\)
+Mini break del camino Guía 7 (hechos: 1, 2, 4, 5; sigue 8).
 
 ## 4. Pedido concreto
 
-> hagamos el siguiente de la misma forma
+> hagamos un mini break, necesito ultra resumen guias 4,5,6,7 en PDF latex zero to hero

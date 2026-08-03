@@ -1,0 +1,412 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=1.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\setlist{nosep,leftmargin=*,topsep=1pt,itemsep=1pt}
+\titleformat{\section}{\normalsize\bfseries}{\thesection}{0.4em}{}
+\titleformat{\subsection}{\small\bfseries}{\thesubsection}{0.35em}{}
+\titlespacing*{\section}{0pt}{6pt}{3pt}
+\titlespacing*{\subsection}{0pt}{4pt}{2pt}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\uv}[1]{\hat{\mathbf{#1}}}
+\newcommand{\pd}[2]{\dfrac{\partial #1}{\partial #2}}
+
+\title{\vspace{-1.2cm}\textbf{EMI --- Ultra-resumen ZERO TO HERO}\\[2pt]
+\large Guías 4--7 (Green/Laplace · Multipolos · Dieléctricos · Magnetostática)}
+\author{Hoja de final --- metodología + fórmulas + árbol de decisión\\
+Notación Jackson: \(r\) esférico, \(\rho=\sqrt{x^2+y^2}\) cilíndrico}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-1.4cm}
+
+\begin{center}\small\itshape
+Protocolo frente a \textbf{cualquier} problema: consigná $\to$ herramientas $\to$ setup $\to$ pasos $\to$ desarrollo $\to$ resultado $\to$ chequeos $\to$ errores típicos.
+\end{center}
+
+\section*{0.\ Protocolo ZERO TO HERO (siempre)}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item \textbf{Leé el enunciado en criollo.} ¿Qué te dan? ¿Qué te piden? ¿Regiones?
+\item \textbf{Elegí la herramienta} (árbol abajo). No mezcles métodos sin justificar.
+\item \textbf{Setup:} orígenes, simetrías, CB (condiciones de borde), notación.
+\item \textbf{Pasos numerados} antes de calcular.
+\item \textbf{Cada fórmula justificada:} de qué ley sale + unidades/chequeo.
+\item \textbf{Chequeos:} límites, dimensiones, simetría, continuidad, carga/corriente total.
+\end{enumerate}
+
+\subsection*{Árbol de decisión rápido}
+\begin{itemize}
+\item ¿Potencial con conductores / CB en superficies? $\to$ \textbf{Laplace/Poisson + separación} o \textbf{Green/imágenes}.
+\item ¿Cargas localizadas y $r$ grande / momentos? $\to$ \textbf{Multipolos}.
+\item ¿Material dieléctrico / $\varepsilon$? $\to$ \textbf{$\vect{D},\vect{P},\vect{E}$ + CB} (¿linear? ¿sin cargas libres?).
+\item ¿Corrientes estacionarias / $\vect{B}$? $\to$ \textbf{Ampère / Biot--Savart / $\vect{A}$ / $\vect{M},\vect{H}$}.
+\end{itemize}
+
+\begin{multicols}{2}
+
+\section{Guía 4 --- Green, Laplace, Poisson}
+
+\subsection{Leyes madre}
+\[
+\nabla\cdot\vect{E}=\frac{\rho}{\varepsilon_0},\quad
+\vect{E}=-\nabla\Phi,\quad
+\nabla^2\Phi=-\frac{\rho}{\varepsilon_0}
+\]
+(Poisson). Si $\rho=0$: $\nabla^2\Phi=0$ (Laplace).
+
+\subsection{Identidades de Green}
+\[
+\int\!\!\big(u\nabla^2 v-v\nabla^2 u\big)\,dV
+=\oint\!\big(u\nabla v-v\nabla u\big)\cdot d\vect{a}
+\]
+Función de Green (Dirichlet: $G=0$ en $S$):
+\[
+\Phi(\vect{r})=\frac{1}{4\pi\varepsilon_0}\int_V\rho(\vect{r}')G\,dV'
+-\frac{1}{4\pi}\oint_S\Phi(\vect{r}')\pd{G}{n'}\,da'
+\]
+con $\nabla'^2 G=-4\pi\delta(\vect{r}-\vect{r}')$.
+
+\textbf{Imágenes:} $G=1/|\vect{r}-\vect{r}'|-1/|\vect{r}-\vect{r}''_{\mathrm{img}}|$ (elegí imagen para matar $G$ en la frontera).
+
+\subsection{Separación de variables --- recetas}
+\textbf{Cartesianas} (caja / semiplano): $\Phi=X(x)Y(y)Z(z)$.
+Homogéneas $\to$ senos/cosenos; no homogénea $\to$ coeficientes por Fourier.
+
+\textbf{Cilíndricas} (eje $z$, $\rho$):
+\[
+\Phi(\rho,\varphi)=\sum_{m}\!\big(A_m\rho^{m}+B_m\rho^{-m}\big)
+(C_m\cos m\varphi+D_m\sin m\varphi)
+\]
+(+ término $m=0$: $A_0+B_0\ln\rho$). En 3D con $z$: Bessel.
+
+\textbf{Esféricas} (azimuthal sim.):
+\[
+\Phi(r,\theta)=\sum_{\ell=0}^\infty\!\Big(A_\ell r^\ell+B_\ell r^{-(\ell+1)}\Big)P_\ell(\cos\theta)
+\]
+Con $\varphi$: $Y_{\ell m}$ / $P_\ell^m$.
+
+\subsection{Condiciones de borde típicas}
+\begin{itemize}
+\item Conductor: $\Phi=\mathrm{cte}$ en la superficie.
+\item Tierra: $\Phi=0$.
+\item Continua $\Phi$; salto $\varepsilon_0(\vect{E}_2-\vect{E}_1)\cdot\uv{n}=\sigma_f$.
+\item Acotado en $r=0$; $\Phi\to 0$ (o campo dado) en $\infty$.
+\end{itemize}
+
+\subsection{Checklist guía 4}
+\begin{enumerate}
+\item ¿Hay cargas en volumen o solo CB? (Poisson vs Laplace)
+\item ¿Geometría: plano / cilindro / esfera / caja?
+\item ¿Simetría azimutal? (solo $P_\ell$)
+\item Escribí solución general por región + CB + matching.
+\item Si hay ``agujero'' o imagen: Green/imágenes primero.
+\end{enumerate}
+
+\columnbreak
+
+\section{Guía 5 --- Multipolos}
+
+\subsection{Expansión lejos ($r>r'$)}
+\[
+\Phi(\vect{r})=\frac{1}{4\pi\varepsilon_0}\sum_{\ell=0}^\infty\sum_{m=-\ell}^{\ell}
+\frac{4\pi}{2\ell+1}\frac{q_{\ell m}}{r^{\ell+1}}Y_{\ell m}(\theta,\varphi)
+\]
+\[
+q_{\ell m}=\int\! r'^\ell Y_{\ell m}^*(\theta',\varphi')\,\rho(\vect{r}')\,dV'
+\]
+
+\subsection{Cartesianos (los del parcial)}
+Monopolo:
+\[
+q=\int\rho\,dV
+\]
+Dipolo:
+\[
+\vect{p}=\int\vect{r}'\,\rho\,dV'
+\]
+Cuadrupolo (traceless / Jackson):
+\[
+Q_{ij}=\int\!\big(3x_i'x_j'-r'^2\delta_{ij}\big)\rho\,dV'
+\]
+Potencial:
+\[
+\Phi=\frac{1}{4\pi\varepsilon_0}\!\left[
+\frac{q}{r}+\frac{\vect{p}\cdot\uv{r}}{r^2}
++\frac{1}{2}\sum_{ij}\frac{Q_{ij}\,\hat r_i\hat r_j}{r^3}+\cdots
+\right]
+\]
+
+\subsection{Reglas de oro}
+\begin{itemize}
+\item Si $q\neq 0$, el monopolo \textbf{domina} lejos.
+\item Si $q=0$ y $\vect{p}\neq 0$, lidera el dipolo; $\vect{p}$ \textbf{independiente del origen}.
+\item Si $q=\vect{p}=0$, lidera el cuadrupolo; $Q_{ij}$ independiente del origen.
+\item \textbf{Teorema:} el primer multipolo no nulo es origen-independiente.
+\item Neutro + dipolo nulo $\Rightarrow$ mirá cuadrupolo (anillos $\pm Q$, líneas $\pm\lambda$).
+\end{itemize}
+
+\subsection{Fuerza / torque / energía (dipolo)}
+\[
+\vect{F}=(\vect{p}\cdot\nabla)\vect{E},\quad
+\vect{N}=\vect{p}\times\vect{E},\quad
+W=-\vect{p}\cdot\vect{E}
+\]
+(para $\vect{p}$ permanente en campo externo lento).
+
+\subsection{Checklist guía 5}
+\begin{enumerate}
+\item Escribí $\rho$ con deltas.
+\item Calculá $q$, luego $\vect{p}$, luego $Q_{ij}$ (o $q_{\ell m}$).
+\item Identificá el líder $\Rightarrow$ $\Phi\sim 1/r^{n}$.
+\item Si preguntan origen: mové $O$ y mirá qué cambia.
+\end{enumerate}
+
+\end{multicols}
+
+\section{Guía 6 --- Dieléctricos}
+
+\begin{multicols}{2}
+\subsection{Campos y definiciones}
+\[
+\vect{P}=\text{momento dipolar/volumen},\quad
+\rho_b=-\nabla\cdot\vect{P},\quad
+\sigma_b=\vect{P}\cdot\uv{n}
+\]
+\[
+\vect{D}=\varepsilon_0\vect{E}+\vect{P}
+\]
+Lineal isótropo: $\vect{P}=\varepsilon_0\chi_e\vect{E}$, $\vect{D}=\varepsilon\vect{E}$, $\varepsilon=\varepsilon_0(1+\chi_e)$.
+
+\subsection{Maxwell macroscópicos (estática)}
+\[
+\nabla\cdot\vect{D}=\rho_f,\quad
+\nabla\times\vect{E}=0\Rightarrow\vect{E}=-\nabla\Phi
+\]
+Sin $\rho_f$ en el volumen: $\nabla\cdot\vect{D}=0$. En lineal homogéneo: $\nabla^2\Phi=0$ otra vez.
+
+\subsection{Condiciones de borde}
+\[
+\uv{n}\cdot(\vect{D}_2-\vect{D}_1)=\sigma_f,\qquad
+\uv{n}\times(\vect{E}_2-\vect{E}_1)=0
+\]
+($\Phi$ continuo; $E_\parallel$ continuo; $D_\perp$ salta con $\sigma_f$).
+
+\subsection{Capacitores con dieléctricos}
+\begin{itemize}
+\item Capas en \textbf{serie} (mismo $D$ o misma $Q$): $1/C=\sum 1/C_i$.
+\item Capas en \textbf{paralelo} (mismo $V$): $C=\sum C_i$.
+\item Dibujá si $\vect{E}$ o $\vect{D}$ es el continuo.
+\end{itemize}
+
+\subsection{Geometrías clásicas (campo externo $E_0$)}
+\textbf{Esfera dieléctrica} $\varepsilon$ en $\varepsilon_0$:
+\[
+\vect{E}_{\mathrm{in}}=\frac{3\varepsilon_0}{2\varepsilon_0+\varepsilon}\vect{E}_0
+\quad\text{(uniforme adentro)}
+\]
+Afuera: $E_0$ + dipolo con
+\[
+\vect{p}=4\pi\varepsilon_0 R^3\frac{\varepsilon-\varepsilon_0}{\varepsilon+2\varepsilon_0}\vect{E}_0
+\]
+
+\textbf{Cilindro dieléctrico} transversal (muy largo):
+\[
+\vect{E}_{\mathrm{in}}=\frac{2\varepsilon_0}{\varepsilon+\varepsilon_0}\vect{E}_0
+\]
+
+\textbf{Cavidad:} límites $a\to 0$ / $b\to\infty$ del cascarón.
+
+\subsection{Imágenes en dieléctricos}
+Carga puntual frente a dieléctrico semiinfinito / esfera: usá cargas imagen (Jackson §4.4--4.5). Matching de $\Phi$ y $D_\perp$ (o $E_\parallel$).
+
+\subsection{Checklist guía 6}
+\begin{enumerate}
+\item ¿Lineal? ¿Homogéneo por regiones?
+\item ¿Hay $\rho_f$ / $\sigma_f$?
+\item Regiones $\to$ Laplace para $\Phi$ + CB en interfaces.
+\item Calculá $\vect{E}$, luego $\vect{D}=\varepsilon\vect{E}$, $\vect{P}=\vect{D}-\varepsilon_0\vect{E}$.
+\item $\sigma_b=\vect{P}\cdot\uv{n}$, $\rho_b=-\nabla\cdot\vect{P}$.
+\end{enumerate}
+\end{multicols}
+
+\section{Guía 7 --- Magnetostática}
+
+\begin{multicols}{2}
+\subsection{Leyes madre}
+\[
+\nabla\cdot\vect{B}=0,\qquad
+\nabla\times\vect{B}=\mu_0\vect{J}
+\]
+\[
+\vect{B}=\nabla\times\vect{A},\quad
+\nabla\cdot\vect{A}=0\ \text{(Coulomb)}
+\Rightarrow
+\nabla^2\vect{A}=-\mu_0\vect{J}
+\]
+\[
+\vect{A}(\vect{r})=\frac{\mu_0}{4\pi}\int\frac{\vect{J}(\vect{r}')}{|\vect{r}-\vect{r}'|}\,dV'
+\]
+Superficial: $\vect{J}\,dV\to\vect{K}\,da$.
+
+Ampère integral:
+\[
+\oint\vect{B}\cdot d\vect{l}=\mu_0 I_{\mathrm{enc}}
+\]
+
+Biot--Savart:
+\[
+\vect{B}=\frac{\mu_0}{4\pi}\int\frac{\vect{J}\times(\vect{r}-\vect{r}')}{|\vect{r}-\vect{r}'|^3}\,dV'
+\]
+
+\subsection{Cargas que rotan $\to$ corriente}
+\[
+\vect{v}=\boldsymbol{\omega}\times\vect{r},\quad
+\vect{K}=\sigma\vect{v},\quad
+\vect{J}=\rho\vect{v}=\vect{K}\,\delta_S
+\]
+Esfera $r=R$: $\vect{K}=\sigma\omega R\sin\theta\,\uv{\varphi}$.\\
+Disco $z=0$: $\vect{K}=\sigma\omega\rho\,\uv{\varphi}$ ($\rho\le R$).
+
+\subsection{Cilindro infinito, $J$ uniforme}
+\[
+\vect{B}_{\mathrm{int}}=\frac{\mu_0}{2}\vect{J}\times\boldsymbol{\rho},\quad
+\vect{B}_{\mathrm{ext}}=\frac{\mu_0}{2}\frac{R^2}{\rho^2}\vect{J}\times\boldsymbol{\rho}
+\]
+\textbf{Agujero descentrado} (superposición lleno $a$ $-$ lleno $b$):
+\[
+\vect{B}_{\mathrm{agujero}}=\frac{\mu_0}{2}\vect{J}\times\vect{d}
+\quad\text{(uniforme!)}
+\]
+\[
+J=\frac{I}{\pi(a^2-b^2)}
+\]
+
+\subsection{Espira / disco / cascarón}
+Espira en eje:
+\[
+B_z=\frac{\mu_0}{2}\frac{I a^2}{(a^2+z^2)^{3/2}}
+\]
+Disco rotante en eje ($\sigma=Q/(\pi R^2)$):
+\[
+B_z=\frac{\mu_0\sigma\omega}{2}\!\left[\frac{R^2+2z^2}{\sqrt{R^2+z^2}}-2|z|\right]
+\]
+Momento: $m=Q\omega R^2/4$.
+
+Cascarón esférico $\sigma_0$ rotante $\equiv$ esfera con $\vect{M}=\sigma_0 R\boldsymbol{\omega}$ uniforme:
+\[
+\vect{B}_{\mathrm{in}}=\tfrac23\mu_0\vect{M},\quad
+\vect{m}=\tfrac{4\pi}{3}R^3\vect{M}\ \text{(dipolo afuera)}
+\]
+\[
+\vect{A}_{\mathrm{in}}=\tfrac{\mu_0}{3}\vect{M}\times\vect{r}
+\]
+
+\subsection{Materiales: $\vect{M},\vect{H}$}
+\[
+\vect{J}_m=\nabla\times\vect{M},\quad
+\vect{K}_m=\vect{M}\times\uv{n}
+\]
+\[
+\vect{H}=\frac{\vect{B}}{\mu_0}-\vect{M},\quad
+\nabla\times\vect{H}=\vect{J}_f,\quad
+\nabla\cdot\vect{B}=0
+\]
+Si $\vect{J}_f=0$: $\vect{H}=-\nabla\Phi_m$, $\nabla^2\Phi_m=0$ por regiones (cuidado con $\rho_m=-\nabla\cdot\vect{M}$).
+
+Lineal: $\vect{B}=\mu\vect{H}$. CB:
+\[
+\uv{n}\cdot(\vect{B}_2-\vect{B}_1)=0,\quad
+\uv{n}\times(\vect{H}_2-\vect{H}_1)=\vect{K}_f
+\]
+
+Imán cilíndrico $\vect{M}=M\uv{z}$: $\vect{K}_m=M\uv{\varphi}$ en la pared lateral; $\vect{H}$ como de solenoide ``al revés'' / polos; $\vect{B}=\mu_0(\vect{H}+\vect{M})$.
+
+\subsection{Dipolo magnético lejos}
+\[
+\vect{m}=\frac12\int\vect{r}\times\vect{J}\,dV=\int\vect{M}\,dV
+\]
+\[
+\vect{B}=\frac{\mu_0}{4\pi}\frac{3(\vect{m}\cdot\uv{r})\uv{r}-\vect{m}}{r^3}
+\]
+
+\subsection{Energía (permanente)}
+\[
+\int_{\mathrm{todo}}\vect{B}\cdot\vect{H}\,dV=0,\quad
+W=\frac{\mu_0}{2}\int H^2\,dV=-\frac{\mu_0}{2}\int\vect{M}\cdot\vect{H}\,dV
+\]
+
+\subsection{Checklist guía 7}
+\begin{enumerate}
+\item ¿Hay $\vect{J}$ / $\vect{K}$ explícita o hay que armarla ($\sigma,\omega$ / $\vect{M}$)?
+\item ¿Simetría de Ampère o hay que integrar / multipolo?
+\item ¿Materiales? Pasá a $\vect{H}$, corrientes equivalentes.
+\item Chequeá $\nabla\cdot\vect{B}=0$ y continuidad tangencial de $\vect{H}$ / normal de $\vect{B}$.
+\end{enumerate}
+\end{multicols}
+
+\section{Fórmulas ``siempre a mano''}
+\begin{multicols}{2}
+\small
+\[
+P_\ell(\mu):\ P_0=1,\ P_1=\mu,\ P_2=\tfrac12(3\mu^2-1)
+\]
+\[
+Y_{00}=\tfrac{1}{\sqrt{4\pi}},\ 
+Y_{10}=\sqrt{\tfrac{3}{4\pi}}\cos\theta
+\]
+Promedio angular: $\langle\cos\theta\rangle$, etc.
+
+Operadores útiles:
+\[
+\nabla\cdot\vect{r}=3,\ 
+\nabla\times(\vect{a}\times\vect{r})=2\vect{a}\ (\vect{a}\ \mathrm{cte})
+\]
+\[
+\nabla(\vect{a}\cdot\vect{r})=\vect{a},\ 
+\nabla^2(1/r)=-4\pi\delta(\vect{r})
+\]
+
+Continuidad de corriente estacionaria: $\nabla\cdot\vect{J}=0$.
+
+Solenoide largo: $B=\mu_0 n I$ adentro.
+
+Cinta / plano de $\vect{K}$: salto $\uv{n}\times(\vect{B}_2-\vect{B}_1)=\mu_0\vect{K}$.
+\columnbreak
+\subsection*{Errores típicos de final}
+\begin{itemize}
+\item Confundir $\rho$ cilíndrico con $r$ esférico.
+\item Olvidar imagen / región en Green.
+\item Multipolo: no chequear $q=0$ antes de decir ``dipolo''.
+\item Dieléctrico: usar $\varepsilon_0$ en CB de $D$ (va $\uv{n}\cdot\Delta\vect{D}=\sigma_f$).
+\item Magneto: Ampère sin justificar simetría.
+\item Disco rotante: $dI=\sigma\omega R\,d\rho$ (mal; va $\rho'$).
+\item Agujero: $\vect{B}$ ``circular'' (si $d\neq 0$ es uniforme).
+\item $\vect{B}$ vs $\vect{H}$ en materiales (¿dónde está $\vect{M}$?).
+\end{itemize}
+
+\subsection*{Orden de ataque sugerido en el final}
+\begin{enumerate}
+\item Clasificá la guía (4/5/6/7).
+\item Dibujá regiones + CB.
+\item Elegí 1 método (no 3 a la vez).
+\item Resolvé símbolos; recién al final números.
+\item 60\,s de chequeos antes de entregar.
+\end{enumerate}
+\end{multicols}
+
+\vspace{4pt}
+\begin{center}\footnotesize
+EMI 2026 --- Ultra-resumen ZERO TO HERO Guías 4--7 --- Para tener al lado en el final. No reemplaza practicar problemas.
+\end{center}
+\end{document}
