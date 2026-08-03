@@ -2,21 +2,19 @@
 
 ## 1. Material
 
-Compendio ZERO TO HERO completo Guías 4–7 (extendido)
+`Guia_7_EMI (1).pdf` — Magnetostática  
+Problema 5 ZERO TO HERO: `tutor/sesiones/2026-08-03-guia7-problema-5.md`
 
 ## 2. Qué quiero
 
-- [x] Extender el ultra-resumen hasta que tenga TODO de las guías 4,5,6,7
-
-Archivos:
-- `tutor/resumenes/ultra-resumen-guias-4-7-z2h.tex`
-- `tutor/resumenes/ultra-resumen-guias-4-7-z2h.pdf` (**9 páginas**)
-- Artifact: `/opt/cursor/artifacts/ultra-resumen-guias-4-7-z2h.pdf`
+- [x] Problema 5 completo desde absolutamente cero (cascarón esférico rotante → A y B)
 
 ## 3. Contexto
 
-Mini break Guía 7. Camino corto sigue en Problema 8.
+- Camino: 1 → 2 → 4 → 5 → 8 → …
+- Hechos: 1, 2, 4, 5
+- Siguiente: Problema 8
 
 ## 4. Pedido concreto
 
-> extiendelo mas, que TENGA TODO DE TODO que no me quede ninguna duda
+> vamos con el 5 completo ahora zero to hero como dijimos
