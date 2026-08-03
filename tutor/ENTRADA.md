@@ -2,18 +2,20 @@
 
 ## 1. Material
 
-Captura FG4 2020 FAMAF — Problemas 3 y 4 (`tutor/inbox/FG4-2020-problema-3.md`)
+`Guia_7_EMI (1).pdf` — Electromagnetismo I 2026 — Magnetostática  
+Mapa: `tutor/sesiones/2026-08-03-guia7-mapa.md`
 
 ## 2. Qué quiero
 
-- [x] Problema 3 (hecho)
-- [x] Problema 4 ítems a–c — ZERO TO HERO, misma forma que el 3, un poco más explicado
+- [x] Mapeo de la Guía 7 (obligatorio / importante / si sobra + camino)
+- [ ] Resolver ejercicios del camino corto ZERO TO HERO (empezar cuando el alumno elija número)
 
 ## 3. Contexto
 
-- Nivel: facultad (Física General IV — óptica)
-- Explicar interferencia + difracción desde cero
+- Nivel: facultad (EMI / FAMAF)
+- Ya hecho: Problema 5 (cascarón esférico rotante)
+- Notación Jackson: \(r\), \(\rho=\sqrt{x^2+y^2}\)
 
 ## 4. Pedido concreto
 
-> perfecto, desarrollando de la misma forma y explicando un poco más haz el 4
+> Guia_7_EMI (1).pdf hagamos lo mismo q con las otras guiias pero con estas
